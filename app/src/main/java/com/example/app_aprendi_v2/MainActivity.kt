@@ -7,6 +7,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
@@ -34,19 +36,27 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.navigation.NavController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            HomeScreen()
+            val navController = rememberNavController()         //Add navController for navigation in app
+            NavHost(navController = navController, startDestination = "home") {
+            composable("home") { HomeScreen(navController) }
+                composable("details") { CourseDetailsScreen() }
+            }
         }
     }
 
 
     @Composable
-    fun HomeScreen() {
+    fun HomeScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -59,7 +69,7 @@ class MainActivity : ComponentActivity() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 0.dp, end = 4.dp) // Ajuste o padding se necessário
+                    .padding(start = 0.dp, end = 4.dp) // Adjustment padding
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.logomarcagrand),
@@ -72,7 +82,7 @@ class MainActivity : ComponentActivity() {
             }
             Banner()
             Spacer(modifier = Modifier.height(60.dp))
-            ContentPrincipal()
+            ContentPrincipal(navController)
             Spacer(modifier = Modifier.height((40.dp)))
             ContentSecond()
         }
@@ -90,7 +100,7 @@ class MainActivity : ComponentActivity() {
 
         LaunchedEffect(Unit) {
             while (true) {
-                delay(4000)  // Tempo de exibição de cada imagem em milissegundos
+                delay(4000)  // Time of execution of the banner
                 currentImageIndex = (currentImageIndex + 1) % images.size
             }
         }
@@ -103,11 +113,11 @@ class MainActivity : ComponentActivity() {
         ) {
             LazyRow(
                 modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(0.dp), // Remove o padding interno se necessário
+                contentPadding = PaddingValues(0.dp), // remove padding intern if necessary
                 horizontalArrangement = Arrangement.Center
             ) {
                 items(images.size) { index ->
-                    // Verifica se o índice corresponde à imagem atual
+                    // check animation visibility of the banner
                     AnimatedVisibility(
                         visible = currentImageIndex == index,
                         enter = fadeIn() + slideInHorizontally(initialOffsetX = { fullWidth -> fullWidth }),
@@ -131,7 +141,7 @@ class MainActivity : ComponentActivity() {
 
 
     @Composable
-    fun ContentPrincipal() {
+    fun ContentPrincipal(navController: NavController) {
         val courses = listOf(
             painterResource(id = R.drawable.fundamentosdeti),
             painterResource(id = R.drawable.modelagemdedados),
@@ -139,25 +149,60 @@ class MainActivity : ComponentActivity() {
             painterResource(id = R.drawable.humantech),
             painterResource(id = R.drawable.sistemas)
         )
+        var clicked by remember { mutableStateOf(false) }
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .horizontalScroll(rememberScrollState())
-                .padding(0.dp), // Ajuste o padding conforme necessário
+                .padding(0.dp), // adjust the padding
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            courses.forEach { painter ->
-                Image(
-                    painter = painter,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(170.dp)
-                        .clip(RoundedCornerShape(70))
-                        .clickable { println("Imagem Clicada") }
-                        .padding(23.dp)
+            courses.forEachIndexed { index, painter ->
+                val imageSize by animateDpAsState(
+                    targetValue = if (clicked && index == 0) 170.dp else 170.dp,
+                    label = "Image Size Animation"
                 )
+
+                val backgroundColor by animateColorAsState(
+                    targetValue = if (clicked && index == 0) Color(0xFF1F001F) else Color.Transparent,
+                    label = "Image backgroundColor Animation"
+                )
+
+                Box(
+                    modifier = Modifier
+                        .size(imageSize)
+                        .clip(RoundedCornerShape(70))
+                        .background(backgroundColor)
+                        .clickable {
+                            if (index == 0) {
+                                clicked = !clicked
+                                navController.navigate("details")
+                            }
+                        }
+                        .padding(23.dp)
+                ){
+                    Image(
+                        painter = painter,
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                }
             }
+        }
+    }
+
+    @Composable
+    fun CourseDetailsScreen() {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFF1F001F))
+                .fillMaxWidth()
+        ){
+            Text(text = "Detalhes do Curso", style = MaterialTheme.typography.headlineMedium)
         }
     }
 
@@ -186,9 +231,9 @@ class MainActivity : ComponentActivity() {
                     Text(
                         text = title,
                         color = Color.White,
-                        style = MaterialTheme.typography.bodySmall, // Estilo do texto
+                        style = MaterialTheme.typography.bodySmall, // style of text
                         modifier = Modifier
-                            .padding(bottom = 0.dp) // Espaçamento abaixo do texto
+                            .padding(bottom = 0.dp) // spacing below text
                     )
                     Image(
                         painter = painter,
@@ -196,7 +241,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .size(170.dp)
                             .clip(RoundedCornerShape(70))
-                            .clickable { println("Image2 Clicada") }
+                            .clickable { println("Image2 Click") }
                             .padding(23.dp)
                     )
                 }
@@ -208,6 +253,7 @@ class MainActivity : ComponentActivity() {
     @Preview(showBackground = true)
     @Composable
     fun HomeScreenPreview() {
-        HomeScreen()
+        val navController = rememberNavController() // Create NavController for Preview
+        HomeScreen(navController) // Pass navController as a parameter
     }
 }

@@ -29,7 +29,7 @@ class SplashActivity : ComponentActivity() {
         setContent {
             enableEdgeToEdge()
             SplashScreen {
-                // Navega para a MainActivity após o tempo da splash screen
+                // Navigation for MainActivity
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
             }
@@ -39,13 +39,13 @@ class SplashActivity : ComponentActivity() {
 
 @Composable
 fun SplashScreen(onTimeout: () -> Unit) {
-    // Duração da splash screen
+    // Duration splash screen
     LaunchedEffect(Unit) {
         delay(1500) // 1.5 segundos
         onTimeout()
     }
 
-    // Conteúdo da splash screen
+    // Content splash screen
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -56,8 +56,8 @@ fun SplashScreen(onTimeout: () -> Unit) {
             painter = painterResource(id = R.drawable.logomarcav2),
             contentDescription = null,
             modifier = Modifier
-                .width(350.dp) // Largura específica
-                .height(350.dp), // Altura específica,
+                .width(350.dp) // width specified
+                .height(350.dp), // height specified
             contentScale = ContentScale.Crop
         )
 
