@@ -31,10 +31,10 @@ fun LoginScreen(onLoginClick: (String, String) -> Unit) {
     var email by remember { mutableStateOf(TextFieldValue()) }
     var password by remember { mutableStateOf(TextFieldValue()) }
     var isLoading by remember { mutableStateOf(false) }
-    val context = LocalContext.current  // Contexto para acessar o banco de dados
+    val context = LocalContext.current  
     val scope = rememberCoroutineScope()
 
-    Column(              // Coluna para criação e existilização do layout da pagina de login
+    Column(
 
         modifier = Modifier
             .fillMaxSize()
@@ -69,12 +69,11 @@ fun LoginScreen(onLoginClick: (String, String) -> Unit) {
             onClick = {
                 isLoading = true
                 scope.launch {
-                    val isLoggedIn = loginUser(context, email.text, password.text)  // Chama função de login
+                    val isLoggedIn = loginUser(context, email.text, password.text)
                     if (isLoggedIn) {
-                        onLoginClick(email.text, password.text)  // Navega para a próxima tela
+                        onLoginClick(email.text, password.text)
                     } else {
-                        isLoading = false  // Se falhar, habilita o botão novamente
-                        // Mostrar uma mensagem de erro (pode usar um Snackbar ou Toast)
+                        isLoading = false
                     }
                 }
             },
@@ -91,16 +90,15 @@ fun LoginScreen(onLoginClick: (String, String) -> Unit) {
 }
 
 
-//Referente ao Banco de Dados:
+//Reference for Database:
 
-@Entity(tableName = "user")       //Representa a tabela no banco de dados. criando uma classe para armazenar os dados de login do usuário (por exemplo, email e senha).
+@Entity(tableName = "user")
 data class User (
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val email: String,
     val password: String
 )
 
-@Dao                //Define os métodos que você pode usar para interagir com o banco de dados. Ele será usado para inserir e consultar os dados de login.
 interface UserDao {
     @Insert
     suspend fun insertUser(user: User)
@@ -132,16 +130,16 @@ abstract class AppDatabase : RoomDatabase() {
 }
 
 
-//Inserir novo usuário (Cadastro):
+//insert new user
 
-// Função de login do usuário, chamada na LoginScreen
+
 suspend fun loginUser(context: Context, email: String, password: String): Boolean {
     val userDao = AppDatabase.getDatabase(context).userDao()
     val user = userDao.getUser(email, password)
     return user != null  // Retorna verdadeiro se o usuário for encontrado
 }
 
-// Função de registro de usuário (caso queira adicionar um botão para "Registrar")
+
 suspend fun registerUser(context: Context, email: String, password: String) {
     val userDao = AppDatabase.getDatabase(context).userDao()
     val user = User(email = email, password = password)
