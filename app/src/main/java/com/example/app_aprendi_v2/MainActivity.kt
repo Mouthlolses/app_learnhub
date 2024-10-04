@@ -196,9 +196,11 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun CourseDetailsScreen() {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFF1F001F))
+                .fillMaxWidth()
         ){
             Text(text = "Detalhes do Curso", style = MaterialTheme.typography.headlineMedium)
         }
