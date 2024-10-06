@@ -201,6 +201,7 @@ class MainActivity : ComponentActivity() {
                 .fillMaxSize()
                 .background(Color(0xFF1F001F))
                 .fillMaxWidth()
+                .padding(0.dp)
         ){
             Text(text = "Detalhes do Curso", style = MaterialTheme.typography.headlineMedium)
         }
