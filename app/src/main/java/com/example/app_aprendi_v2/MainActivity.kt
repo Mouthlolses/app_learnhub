@@ -50,7 +50,7 @@ class MainActivity : ComponentActivity() {
             NavHost(navController = navController, startDestination = "home") {
             composable("home") { HomeScreen(navController) }
                 composable("details") { CourseDetailsScreen() }
-                composable("login") {ButtonLogin(navController)}
+                composable("login") { ButtonLogin ()}
             }
         }
     }
@@ -113,12 +113,6 @@ class MainActivity : ComponentActivity() {
             ContentPrincipal(navController)
             Spacer(modifier = Modifier.height((40.dp)))
             ContentSecond()
-            Button(onClick = { navController.navigate("login")},
-                   modifier = Modifier
-                     .fillMaxSize()
-                     .padding(16.dp)
-            ) {
-                Text("Login of User")
             }
         }
     }
@@ -287,14 +281,14 @@ class MainActivity : ComponentActivity() {
 
 
     @Composable
-    fun LoginScreen(navController: navController) {
+    fun Button(navController: NavController) {
         Column(
             modifier = Modifier
-            .fillMaxSize
+            .fillMaxSize()
             .background(Color(0xFF1F001F))
-            .padding(0.dp)
-            horizontalAlignment = Aligment.CenterHorizontally,
-            verticalAlignment = Arrangement.Center
+            .padding(0.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
         ) {
             Text(
                 text = "Login",
