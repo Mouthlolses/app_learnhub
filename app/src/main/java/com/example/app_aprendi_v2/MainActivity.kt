@@ -46,41 +46,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val navController = rememberNavController()         //Add navController for navigation in app
+            val navController =
+                rememberNavController()         //Add navController for navigation in app
             NavHost(navController = navController, startDestination = "home") {
-            composable("home") { HomeScreen(navController) }
+                composable("home") { HomeScreen(navController) }
                 composable("details") { CourseDetailsScreen() }
-                composable("login") {ButtonLogin(navController)}
             }
         }
     }
-
-
-    class register {
-        var name: String = ""
-        var email: String = ""
-        var password: String = ""
-        var passwordConfirm: String = ""
-        
-        fun registerUser() {
-            println("Name: $name")
-            println("Email: $email")
-            println("Password: $password")
-            println("Password Confirm: $passwordConfirm")
-        }
-    }
-
-    class userLogin {
-        var email: String = ""
-        var password: String = ""
-        var rememberMe: Boolean = false
-
-        fun LoginUser() {
-            println("Email: $email")
-            println("Password: $password")
-            println("Remember Me: $rememberMe")
-        }
-    }
+}
 
 
     @Composable
@@ -113,13 +87,6 @@ class MainActivity : ComponentActivity() {
             ContentPrincipal(navController)
             Spacer(modifier = Modifier.height((40.dp)))
             ContentSecond()
-            Button(onClick = { navController.navigate("login")},
-                   modifier = Modifier
-                     .fillMaxSize()
-                     .padding(16.dp)
-            ) {
-                Text("Login of User")
-            }
         }
     }
 
@@ -217,7 +184,7 @@ class MainActivity : ComponentActivity() {
                             }
                         }
                         .padding(23.dp)
-                ){
+                ) {
                     Image(
                         painter = painter,
                         contentDescription = null,
@@ -237,7 +204,7 @@ class MainActivity : ComponentActivity() {
                 .background(Color(0xFF1F001F))
                 .fillMaxWidth()
                 .padding(0.dp)
-        ){
+        ) {
             Text(text = "Detalhes do Curso", style = MaterialTheme.typography.headlineMedium)
         }
     }
@@ -247,10 +214,10 @@ class MainActivity : ComponentActivity() {
     fun ContentSecond() {
         val coursesTwo = listOf(
             Pair("Em Breve", painterResource(id = R.drawable.sistemas)),
-            Pair("Em Breve",painterResource(id = R.drawable.python)),
-            Pair("Em Breve",painterResource(id = R.drawable.fundamentosdeti)),
-            Pair("Em Breve",painterResource(id = R.drawable.modelagemdedados)),
-            Pair("Em Breve",painterResource(id = R.drawable.humantech))
+            Pair("Em Breve", painterResource(id = R.drawable.python)),
+            Pair("Em Breve", painterResource(id = R.drawable.fundamentosdeti)),
+            Pair("Em Breve", painterResource(id = R.drawable.modelagemdedados)),
+            Pair("Em Breve", painterResource(id = R.drawable.humantech))
         )
         Row(
             modifier = Modifier
@@ -286,39 +253,10 @@ class MainActivity : ComponentActivity() {
     }
 
 
-    @Composable
-    fun LoginScreen(navController: navController) {
-        Column(
-            modifier = Modifier
-            .fillMaxSize
-            .background(Color(0xFF1F001F))
-            .padding(0.dp)
-            horizontalAlignment = Aligment.CenterHorizontally,
-            verticalAlignment = Arrangement.Center
-        ) {
-            Text(
-                text = "Login",
-                style = MaterialTheme.typography.headlineMedium, color = Color.White
-
-                Spacer(modifier = Modifier.height(16.dp))
-
-                Button(onClick = { navController.navigate("home") }) {
-                    Text("Login")
-                }
-            )
-        }
-    }
-
-
-
-
-
-
-
-    @Preview(showBackground = true)
-    @Composable
-    fun HomeScreenPreview() {
-        val navController = rememberNavController() // Create NavController for Preview
-        HomeScreen(navController) // Pass navController as a parameter
-    }
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+    val navController = rememberNavController() // Create NavController for Preview
+    HomeScreen(navController) // Pass navController as a parameter
 }
+
