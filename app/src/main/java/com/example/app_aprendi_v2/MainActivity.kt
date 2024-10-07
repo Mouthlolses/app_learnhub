@@ -50,7 +50,35 @@ class MainActivity : ComponentActivity() {
             NavHost(navController = navController, startDestination = "home") {
             composable("home") { HomeScreen(navController) }
                 composable("details") { CourseDetailsScreen() }
+                composable("login") {ButtonLogin(navController)}
             }
+        }
+    }
+
+
+    class register {
+        var name: String = ""
+        var email: String = ""
+        var password: String = ""
+        var passwordConfirm: String = ""
+        
+        fun registerUser() {
+            println("Name: $name")
+            println("Email: $email")
+            println("Password: $password")
+            println("Password Confirm: $passwordConfirm")
+        }
+    }
+
+    class userLogin {
+        var email: String = ""
+        var password: String = ""
+        var rememberMe: Boolean = false
+
+        fun LoginUser() {
+            println("Email: $email")
+            println("Password: $password")
+            println("Remember Me: $rememberMe")
         }
     }
 
@@ -85,6 +113,13 @@ class MainActivity : ComponentActivity() {
             ContentPrincipal(navController)
             Spacer(modifier = Modifier.height((40.dp)))
             ContentSecond()
+            Button(onClick = { navController.navigate("login")},
+                   modifier = Modifier
+                     .fillMaxSize()
+                     .padding(16.dp)
+            ) {
+                Text("Login of User")
+            }
         }
     }
 
@@ -249,6 +284,35 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+
+    @Composable
+    fun LoginScreen(navController: navController) {
+        Column(
+            modifier = Modifier
+            .fillMaxSize
+            .background(Color(0xFF1F001F))
+            .padding(0.dp)
+            horizontalAlignment = Aligment.CenterHorizontally,
+            verticalAlignment = Arrangement.Center
+        ) {
+            Text(
+                text = "Login",
+                style = MaterialTheme.typography.headlineMedium, color = Color.White
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(onClick = { navController.navigate("home") }) {
+                    Text("Login")
+                }
+            )
+        }
+    }
+
+
+
+
+
 
 
     @Preview(showBackground = true)
