@@ -46,9 +46,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val navController =
-                rememberNavController()         //Add navController for navigation in app
-            NavHost(navController = navController, startDestination = "home") {
+            val navController = rememberNavController()         //Add navController for navigation in app
+             NavHost(navController = navController, startDestination = "home") {
                 composable("home") { HomeScreen(navController) }
                 composable("details") { CourseDetailsScreen() }
             }
