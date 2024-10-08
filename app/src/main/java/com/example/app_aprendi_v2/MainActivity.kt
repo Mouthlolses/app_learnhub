@@ -36,12 +36,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.app_aprendi_v2.data.User
+import com.example.app_aprendi_v2.data.local.AppDatabase
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
+    private lateinit var database: AppDatabase
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -50,10 +57,22 @@ class MainActivity : ComponentActivity() {
              NavHost(navController = navController, startDestination = "home") {
                 composable("home") { HomeScreen(navController) }
                 composable("details") { CourseDetailsScreen() }
+
+
+                 /* Exemplo de uso da data class Usuario e Room
+                 val usuario = User(
+                     name = "Matheus Bento Vieira",
+                     email = "matheus@example.com",
+                     password = "password")
+
+                    Salvar usuário no banco de dados
+                 lifecycleScope.launch {
+                     database.userDao().insert(usuario)*/
+
+                 }
             }
         }
     }
-}
 
 
     @Composable
