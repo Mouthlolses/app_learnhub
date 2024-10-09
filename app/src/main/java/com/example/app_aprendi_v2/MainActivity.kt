@@ -57,18 +57,7 @@ class MainActivity : ComponentActivity() {
              NavHost(navController = navController, startDestination = "home") {
                 composable("home") { HomeScreen(navController) }
                 composable("details") { CourseDetailsScreen() }
-
-
-                 /* Exemplo de uso da data class Usuario e Room
-                 val usuario = User(
-                     name = "Matheus Bento Vieira",
-                     email = "matheus@example.com",
-                     password = "password")
-
-                    Salvar usuário no banco de dados
-                 lifecycleScope.launch {
-                     database.userDao().insert(usuario)*/
-
+                 composable("register") { RegisterScreen() }
                  }
             }
         }
