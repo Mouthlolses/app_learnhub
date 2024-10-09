@@ -255,7 +255,6 @@ class MainActivity : ComponentActivity() {
             Button(onClick = { navController.popBackStack()}) {
                 Text("Retornar a Home")
             }
-            BottomAppBarContent(navController = navController)
         }
     }
 
