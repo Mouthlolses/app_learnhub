@@ -20,6 +20,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.app_aprendi_v2.data.User
 import com.example.app_aprendi_v2.data.local.AppDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -27,14 +29,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-@Composable
-fun RegisterScreen() {
 
+@Composable
+fun RegisterScreen(navController: NavController = rememberNavController()) {
     val context = LocalContext.current
     val database = AppDatabase.getDatabase(context)
 
     var name by remember { mutableStateOf("") }
-    val email by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
 
@@ -53,17 +55,25 @@ fun RegisterScreen() {
         Spacer(modifier = Modifier.height(8.dp))
 
         TextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("Email") }
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
             value = password,
             onValueChange = { password = it },
             label = { Text("Password")},
             visualTransformation = PasswordVisualTransformation()
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = { if (database != null) {
+        Button(onClick =  {
             val user = User(name = name, email = email, password = password)
             CoroutineScope(Dispatchers.IO).launch {
                 database.userDao().insert(user)
-            }}
+            }
+            navController.popBackStack()
         }) {
             Text("Register")
         }

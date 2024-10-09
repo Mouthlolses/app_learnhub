@@ -27,10 +27,20 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -54,20 +64,19 @@ import androidx.navigation.compose.rememberNavController
 import com.example.app_aprendi_v2.data.local.AppDatabase
 import kotlinx.coroutines.delay
 
+
 class MainActivity : ComponentActivity() {
     private lateinit var database: AppDatabase
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val navController = rememberNavController()         //Add navController for navigation in app
-             NavHost(navController = navController, startDestination = "home") {
+            val navController = rememberNavController()
+            NavHost(navController = navController, startDestination = "home") {
                 composable("home") { HomeScreen(navController) }
                 composable("details") { CourseDetailsScreen() }
-                 composable("register") { RegisterScreen() }
-                 }
+                composable("register") { RegisterScreen(navController) }
             }
         }
     }
@@ -75,38 +84,50 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun HomeScreen(navController: NavController) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0xFF1F001F))
-                .padding(0.dp),
-        ) {
+        val scrollState = rememberScrollState()
 
-            Spacer(modifier = Modifier.height(0.dp))
-
-            Row(
+        Scaffold(
+            bottomBar = { BottomAppBarContent(navController) }
+        ) { paddingValues ->
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 0.dp, end = 4.dp) // Adjustment padding
+                    .fillMaxSize()
+                    .background(Color(0xFF1F001F))
+                    .padding(paddingValues)
+                    .padding(0.dp),
             ) {
-                Image(
-                    painter = painterResource(id = R.drawable.logomarcagrand),
-                    contentDescription = null,
+                Spacer(modifier = Modifier.height(0.dp))
+
+                Row(
                     modifier = Modifier
-                        .size(150.dp)
-                        .align(Alignment.CenterVertically),
-                    contentScale = ContentScale.Crop
-                )
+                        .fillMaxWidth()
+                        .padding(start = 0.dp, end = 4.dp) // Adjustment padding
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.logomarcagrand),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(150.dp)
+                            .align(Alignment.CenterVertically),
+                        contentScale = ContentScale.Crop
+                    )
+                }
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(scrollState)
+                        .padding(0.dp)
+                ) {
+                    Banner()
+                    Spacer(modifier = Modifier.height(60.dp))
+                    ContentPrincipal(navController)
+                    Spacer(modifier = Modifier.height((40.dp)))
+                    ContentSecond()
+                }
             }
-            Banner()
-            Spacer(modifier = Modifier.height(60.dp))
-            ContentPrincipal(navController)
-            Spacer(modifier = Modifier.height((40.dp)))
-            ContentSecond()
         }
     }
-
-
     @Composable
     fun Banner() {
         val images = listOf(
@@ -123,11 +144,10 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        Box(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(17.7f / 9f),
-            contentAlignment = Alignment.TopCenter
         ) {
             LazyRow(
                 modifier = Modifier.fillMaxWidth(),
@@ -169,44 +189,48 @@ class MainActivity : ComponentActivity() {
         )
         var clicked by remember { mutableStateOf(false) }
 
+        Column(
+
+        ){
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .horizontalScroll(rememberScrollState())
-                .padding(0.dp), // adjust the padding
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            courses.forEachIndexed { index, painter ->
-                val imageSize by animateDpAsState(
-                    targetValue = if (clicked && index == 0) 170.dp else 170.dp,
-                    label = "Image Size Animation"
-                )
-
-                val backgroundColor by animateColorAsState(
-                    targetValue = if (clicked && index == 0) Color(0xFF1F001F) else Color.Transparent,
-                    label = "Image backgroundColor Animation"
-                )
-
-                Box(
-                    modifier = Modifier
-                        .size(imageSize)
-                        .clip(RoundedCornerShape(70))
-                        .background(backgroundColor)
-                        .clickable {
-                            if (index == 0) {
-                                clicked = !clicked
-                                navController.navigate("details")
-                            }
-                        }
-                        .padding(23.dp)
-                ) {
-                    Image(
-                        painter = painter,
-                        contentDescription = null,
-                        modifier = Modifier.fillMaxSize(),
-                        contentScale = ContentScale.Crop
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .horizontalScroll(rememberScrollState())
+                    .padding(0.dp), // adjust the padding
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                courses.forEachIndexed { index, painter ->
+                    val imageSize by animateDpAsState(
+                        targetValue = if (clicked && index == 0) 170.dp else 170.dp,
+                        label = "Image Size Animation"
                     )
+
+                    val backgroundColor by animateColorAsState(
+                        targetValue = if (clicked && index == 0) Color(0xFF1F001F) else Color.Transparent,
+                        label = "Image backgroundColor Animation"
+                    )
+
+                    Box(
+                        modifier = Modifier
+                            .size(imageSize)
+                            .clip(RoundedCornerShape(70))
+                            .background(backgroundColor)
+                            .clickable {
+                                if (index == 0) {
+                                    clicked = !clicked
+                                    navController.navigate("details")
+                                }
+                            }
+                            .padding(23.dp)
+                    ) {
+                        Image(
+                            painter = painter,
+                            contentDescription = null,
+                            modifier = Modifier.fillMaxSize(),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
                 }
             }
         }
@@ -235,6 +259,7 @@ class MainActivity : ComponentActivity() {
             Pair("Em Breve", painterResource(id = R.drawable.modelagemdedados)),
             Pair("Em Breve", painterResource(id = R.drawable.humantech))
         )
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -268,11 +293,47 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @Composable
+    fun BottomAppBarContent(navController: NavController) {
 
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview() {
-    val navController = rememberNavController() // Create NavController for Preview
-    HomeScreen(navController) // Pass navController as a parameter
+        BottomAppBar (
+            modifier = Modifier.height(90.dp),
+            containerColor = (Color(0xFF029202))
+        ){
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.weight(1f)
+            ) {
+                IconButton(onClick = { navController.navigate("home") }) {
+                    Icon(Icons.Filled.Home, contentDescription = "Home")
+                }
+                Text(text = "Home", color = Color.Black, modifier = Modifier.padding(0.dp))
+            }
+            Spacer(modifier = Modifier.width(120.dp))
+
+            IconButton(onClick = { navController.navigate("details") }) {
+                Icon(Icons.Filled.AddCircle, contentDescription = "Details")
+            }
+
+            Spacer(modifier = Modifier.width(120.dp))
+
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.weight(1f)
+            ) {
+                IconButton(onClick = { navController.navigate("register") }) {
+                    Icon(Icons.Filled.AccountCircle, contentDescription = "Register")
+                }
+                Text(text = "Conta", color = Color.Black, modifier = Modifier.padding(0.dp))
+            }
+        }
+    }
+
+
+    @Preview(showBackground = true)
+    @Composable
+    fun HomeScreenPreview() {
+        val navController = rememberNavController() // Create NavController for Preview
+        HomeScreen(navController) // Pass navController as a parameter
+    }
 }
-
