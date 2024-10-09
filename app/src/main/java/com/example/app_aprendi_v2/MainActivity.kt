@@ -37,6 +37,7 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -75,7 +76,7 @@ class MainActivity : ComponentActivity() {
             val navController = rememberNavController()
             NavHost(navController = navController, startDestination = "home") {
                 composable("home") { HomeScreen(navController) }
-                composable("details") { CourseDetailsScreen() }
+                composable("details") { CourseDetailsScreen(navController) }
                 composable("register") { RegisterScreen(navController) }
             }
         }
@@ -237,7 +238,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun CourseDetailsScreen() {
+    fun CourseDetailsScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -245,7 +246,16 @@ class MainActivity : ComponentActivity() {
                 .fillMaxWidth()
                 .padding(0.dp)
         ) {
-            Text(text = "Detalhes do Curso", style = MaterialTheme.typography.headlineMedium)
+            Text(text = "Detalhes do Curso",
+                style = MaterialTheme.typography.headlineMedium,
+                color = Color.White
+            )
+            Spacer(modifier = Modifier.height(16.dp))
+            
+            Button(onClick = { navController.popBackStack()}) {
+                Text("Retornar a Home")
+            }
+            BottomAppBarContent(navController = navController)
         }
     }
 
@@ -297,8 +307,8 @@ class MainActivity : ComponentActivity() {
     fun BottomAppBarContent(navController: NavController) {
 
         BottomAppBar (
-            modifier = Modifier.height(90.dp),
-            containerColor = (Color(0xFF029202))
+            modifier = Modifier.height(89.dp),
+            containerColor = (Color(0xFF01BD09))
         ){
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -310,10 +320,7 @@ class MainActivity : ComponentActivity() {
                 Text(text = "Home", color = Color.Black, modifier = Modifier.padding(0.dp))
             }
             Spacer(modifier = Modifier.width(120.dp))
-
-            IconButton(onClick = { navController.navigate("details") }) {
-                Icon(Icons.Filled.AddCircle, contentDescription = "Details")
-            }
+            
 
             Spacer(modifier = Modifier.width(120.dp))
 
