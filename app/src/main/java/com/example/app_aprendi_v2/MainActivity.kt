@@ -1,12 +1,12 @@
 package com.example.app_aprendi_v2
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
@@ -16,7 +16,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -31,11 +30,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.AddCircle
-import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
@@ -55,7 +54,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -130,6 +135,9 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+
+
     @Composable
     fun Banner() {
         val images = listOf(
@@ -180,21 +188,21 @@ class MainActivity : ComponentActivity() {
     }
 
 
+
+
     @Composable
     fun ContentPrincipal(navController: NavController) {
         val courses = listOf(
-            painterResource(id = R.drawable.fundamentosdeti),
-            painterResource(id = R.drawable.modelagemdedados),
-            painterResource(id = R.drawable.python),
-            painterResource(id = R.drawable.humantech),
-            painterResource(id = R.drawable.sistemas)
+            Pair("Disponível!", painterResource(id = R.drawable.fundamentosdeti)),
+            Pair("Em Breve", painterResource(id = R.drawable.modelagemdedados)),
+            Pair("Em Breve", painterResource(id = R.drawable.python)),
+            Pair("Em Breve", painterResource(id = R.drawable.humantech)),
+            Pair("Em Breve", painterResource(id = R.drawable.sistemas))
         )
         var clicked by remember { mutableStateOf(false) }
 
-        Column(
-
-        ){
-        Row(
+        Column {
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .horizontalScroll(rememberScrollState())
@@ -202,34 +210,33 @@ class MainActivity : ComponentActivity() {
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                courses.forEachIndexed { index, painter ->
-                    val imageSize by animateDpAsState(
-                        targetValue = if (clicked && index == 0) 170.dp else 170.dp,
-                        label = "Image Size Animation"
-                    )
+                courses.forEachIndexed { index, course ->
+                    val (title, painter) = course
 
-                    val backgroundColor by animateColorAsState(
-                        targetValue = if (clicked && index == 0) Color(0xFF1F001F) else Color.Transparent,
-                        label = "Image backgroundColor Animation"
-                    )
-
-                    Box(
-                        modifier = Modifier
-                            .size(imageSize)
-                            .clip(RoundedCornerShape(70))
-                            .background(backgroundColor)
-                            .clickable {
-                                if (index == 0) {
-                                    clicked = !clicked
-                                    navController.navigate("details")
-                                }
-                            }
-                            .padding(23.dp)
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
                     ) {
+                        // Adiciona a descrição acima da imagem
+                        Text(
+                            text = title,
+                            color = Color.White, // Altere a cor para o valor desejado
+                            style = MaterialTheme.typography.bodySmall,
+                            modifier = Modifier
+                                .padding(bottom = 0.dp)  // Espaçamento abaixo do texto
+                        )
                         Image(
                             painter = painter,
-                            contentDescription = null,
-                            modifier = Modifier.fillMaxSize(),
+                            contentDescription = title,
+                            modifier = Modifier
+                                .size(170.dp)
+                                .clip(RoundedCornerShape(70))
+                                .clickable {
+                                    if (index == 0) {
+                                        clicked = !clicked
+                                        navController.navigate("details")
+                                    }
+                                }
+                                .padding(23.dp),
                             contentScale = ContentScale.Crop
                         )
                     }
@@ -238,8 +245,11 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+
     @Composable
     fun CourseDetailsScreen(navController: NavController) {
+        val context = LocalContext.current
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -247,27 +257,89 @@ class MainActivity : ComponentActivity() {
                 .fillMaxWidth()
                 .padding(0.dp)
         ) {
+
             Spacer(modifier = Modifier.height(50.dp))
-            Text(text = "Fundamentos de TI: Hardware e Software",
-                style = MaterialTheme.typography.headlineMedium,
-                color = Color.White
-            )
-            Spacer(modifier = Modifier.height(400.dp))
-            Text(text = "O objetivo deste curso é apresentar os conceitos básicos da informática, " +
-                    "os componentes dos computadores, os sistemas lógicos e as principais funções de armazenamento" +
-                    " e processamento que envolvem o poder computacional.",
-                style = MaterialTheme.typography.headlineSmall.copy(
-                    fontSize = 18.sp
-                ),
-                color = Color.White
+
+                Text(
+                    text = "Fundamentos de TI:" +
+                            " Hardware e Software",
+                    style = MaterialTheme.typography.headlineMedium,
+                    color = Color.White
                 )
             Spacer(modifier = Modifier.height(20.dp))
-            
+            Image(
+                painter = painterResource(id = R.drawable.cursos_ti),
+                contentDescription = "curse_TI",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp),
+                contentScale = ContentScale.Crop
+            )
+
+                Spacer(modifier = Modifier.height(60.dp))
+                Text(
+                    text = "O objetivo deste curso é apresentar os conceitos básicos da informática, " +
+                            "os componentes dos computadores, os sistemas lógicos e as principais funções de armazenamento" +
+                            " e processamento que envolvem o poder computacional.",
+                    style = MaterialTheme.typography.headlineSmall.copy(
+                        fontSize = 18.sp
+                    ),
+                    color = Color.White,
+                    textAlign = TextAlign.Justify,
+                )
+
+                Spacer(modifier = Modifier.height(60.dp))
+
+                val annotatedText = buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.White
+                        )
+                    ) {
+                        append("Para ter acesso ao seu curso ")
+                    }
+                    pushStringAnnotation(
+                        tag = "URL",
+                        annotation = "https://www.ev.org.br/cursos/fundamentos-de-ti-hardware-e-software"
+                    )
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.Green,
+                            textDecoration = TextDecoration.Underline
+                        )
+                    ) {
+                        append("Clique aqui")
+                    }
+                    pop()
+                }
+
+                ClickableText(
+                    text = annotatedText,
+                    style = MaterialTheme.typography.headlineSmall.copy(
+                        fontSize = 16.sp
+                    ),
+                    onClick = { offset ->
+                        annotatedText.getStringAnnotations(
+                            tag = "URL",
+                            start = offset,
+                            end = offset
+                        )
+                            .firstOrNull()?.let { annotation ->
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))
+                                context.startActivity(intent)
+                            }
+                    },
+                    modifier = Modifier.padding(8.dp)
+                )
+
+                Spacer(modifier = Modifier.height(60.dp))
+
             Button(onClick = { navController.popBackStack()}) {
-                Text("Retornar a Home")
+                Text("Voltar")
             }
         }
     }
+
 
 
     @Composable
@@ -316,22 +388,19 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun BottomAppBarContent(navController: NavController) {
 
-        BottomAppBar (
+        BottomAppBar(
             modifier = Modifier.height(89.dp),
             containerColor = (Color(0xFF01BD09))
-        ){
+        ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.weight(1f)
             ) {
                 IconButton(onClick = { navController.navigate("home") }) {
-                    Icon(Icons.Filled.Home, contentDescription = "Home")
+                    Icon(Icons.Filled.Star, contentDescription = "home")
                 }
-                Text(text = "Home", color = Color.Black, modifier = Modifier.padding(0.dp))
+                Text(text = "Destaques", color = Color.Black, modifier = Modifier.padding(0.dp))
             }
-            Spacer(modifier = Modifier.width(120.dp))
-            
-
             Spacer(modifier = Modifier.width(120.dp))
 
             Column(
