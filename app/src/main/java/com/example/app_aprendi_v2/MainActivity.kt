@@ -58,6 +58,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -246,11 +247,21 @@ class MainActivity : ComponentActivity() {
                 .fillMaxWidth()
                 .padding(0.dp)
         ) {
-            Text(text = "Detalhes do Curso",
+            Spacer(modifier = Modifier.height(50.dp))
+            Text(text = "Fundamentos de TI: Hardware e Software",
                 style = MaterialTheme.typography.headlineMedium,
                 color = Color.White
             )
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(400.dp))
+            Text(text = "O objetivo deste curso é apresentar os conceitos básicos da informática, " +
+                    "os componentes dos computadores, os sistemas lógicos e as principais funções de armazenamento" +
+                    " e processamento que envolvem o poder computacional.",
+                style = MaterialTheme.typography.headlineSmall.copy(
+                    fontSize = 18.sp
+                ),
+                color = Color.White
+                )
+            Spacer(modifier = Modifier.height(20.dp))
             
             Button(onClick = { navController.popBackStack()}) {
                 Text("Retornar a Home")
