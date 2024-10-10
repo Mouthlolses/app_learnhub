@@ -245,7 +245,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-
     @Composable
     fun CourseDetailsScreen(navController: NavController) {
         val context = LocalContext.current
@@ -329,7 +328,8 @@ class MainActivity : ComponentActivity() {
                                 context.startActivity(intent)
                             }
                     },
-                    modifier = Modifier.padding(8.dp)
+                    modifier = Modifier
+                        .padding(8.dp)
                 )
 
                 Spacer(modifier = Modifier.height(60.dp))
@@ -385,6 +385,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+
+
     @Composable
     fun BottomAppBarContent(navController: NavController) {
 
@@ -414,6 +416,7 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
 
 
     @Preview(showBackground = true)
