@@ -263,7 +263,9 @@ class MainActivity : ComponentActivity() {
                     text = "Fundamentos de TI:" +
                             " Hardware e Software",
                     style = MaterialTheme.typography.headlineMedium,
-                    color = Color.White
+                    color = Color.White,
+                    modifier = Modifier
+                        .padding(12.dp)
                 )
             Spacer(modifier = Modifier.height(20.dp))
             Image(
@@ -275,7 +277,7 @@ class MainActivity : ComponentActivity() {
                 contentScale = ContentScale.Crop
             )
 
-                Spacer(modifier = Modifier.height(60.dp))
+                Spacer(modifier = Modifier.height(40.dp))
                 Text(
                     text = "O objetivo deste curso é apresentar os conceitos básicos da informática, " +
                             "os componentes dos computadores, os sistemas lógicos e as principais funções de armazenamento" +
@@ -285,9 +287,11 @@ class MainActivity : ComponentActivity() {
                     ),
                     color = Color.White,
                     textAlign = TextAlign.Justify,
+                    modifier = Modifier
+                        .padding(3.dp)
                 )
 
-                Spacer(modifier = Modifier.height(60.dp))
+                Spacer(modifier = Modifier.height(50.dp))
 
                 val annotatedText = buildAnnotatedString {
                     withStyle(
@@ -329,10 +333,10 @@ class MainActivity : ComponentActivity() {
                             }
                     },
                     modifier = Modifier
-                        .padding(8.dp)
+                        .padding(1.dp)
                 )
 
-                Spacer(modifier = Modifier.height(60.dp))
+                Spacer(modifier = Modifier.height(50.dp))
 
             Button(onClick = { navController.popBackStack()}) {
                 Text("Voltar")
