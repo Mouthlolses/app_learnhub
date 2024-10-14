@@ -16,6 +16,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -24,6 +25,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -52,6 +54,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -103,23 +106,28 @@ class MainActivity : ComponentActivity() {
                     .padding(paddingValues)
                     .padding(0.dp),
             ) {
-                Spacer(modifier = Modifier.height(0.dp))
-
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 0.dp, end = 4.dp) // Adjustment padding
+                        .width(160.dp)
+                        .height(50.dp)
+                        .padding(start = 0.dp, end = 10.dp) // Adjustment padding
                 ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.logomarcagrand),
-                        contentDescription = null,
+                    Box(
                         modifier = Modifier
-                            .size(150.dp)
-                            .align(Alignment.CenterVertically),
-                        contentScale = ContentScale.Crop
-                    )
+                            .fillMaxSize()
+                            .clipToBounds()
+                    ) {
+                        Image(
+                            painter = painterResource(id = R.drawable.logomarcagrand),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(500.dp)
+                                .align(Alignment.Center),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
                 }
-
+                Spacer(modifier = Modifier.height(15.dp))
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
