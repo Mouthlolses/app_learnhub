@@ -12,6 +12,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -256,6 +257,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun CourseDetailsScreen(navController: NavController) {
         val context = LocalContext.current
+        val scrollState = rememberScrollState()
 
         Column(
             modifier = Modifier
@@ -265,16 +267,16 @@ class MainActivity : ComponentActivity() {
                 .padding(0.dp)
         ) {
 
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
-                Text(
-                    text = "Fundamentos de TI:" +
-                            " Hardware e Software",
-                    style = MaterialTheme.typography.headlineMedium,
-                    color = Color.White,
-                    modifier = Modifier
-                        .padding(12.dp)
-                )
+            Text(
+                text = "Fundamentos de TI:" +
+                        " Hardware e Software",
+                style = MaterialTheme.typography.headlineMedium,
+                color = Color.White,
+                modifier = Modifier
+                    .padding(12.dp)
+            )
             Spacer(modifier = Modifier.height(20.dp))
             Image(
                 painter = painterResource(id = R.drawable.cursos_ti),
@@ -285,7 +287,12 @@ class MainActivity : ComponentActivity() {
                 contentScale = ContentScale.Crop
             )
 
-                Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(40.dp))
+
+            Column (
+                modifier = Modifier
+                    .verticalScroll(scrollState)
+            ){
                 Text(
                     text = "O objetivo deste curso é apresentar os conceitos básicos da informática, " +
                             "os componentes dos computadores, os sistemas lógicos e as principais funções de armazenamento" +
@@ -346,12 +353,12 @@ class MainActivity : ComponentActivity() {
 
                 Spacer(modifier = Modifier.height(50.dp))
 
-            Button(onClick = { navController.popBackStack()}) {
-                Text("Voltar")
+                Button(onClick = { navController.popBackStack() }) {
+                    Text("Voltar")
+                }
             }
         }
     }
-
 
 
     @Composable
