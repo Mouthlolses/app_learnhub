@@ -306,7 +306,8 @@ class MainActivity : ComponentActivity() {
 
                 Spacer(modifier = Modifier.height(50.dp))
 
-                val annotatedText = buildAnnotatedString {
+
+                    val annotatedText = buildAnnotatedString {
                     withStyle(
                         style = SpanStyle(
                             color = Color.White
