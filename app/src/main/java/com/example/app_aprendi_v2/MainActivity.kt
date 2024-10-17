@@ -138,6 +138,10 @@ class MainActivity : ComponentActivity() {
                     ContentPrincipal(navController)
                     Spacer(modifier = Modifier.height((40.dp)))
                     ContentSecond()
+                    Spacer(modifier = Modifier.height((40.dp)))
+                    ContentThird()
+                    Spacer(modifier = Modifier.height((40.dp)))
+                    ContentFour()
                 }
             }
         }
@@ -388,6 +392,92 @@ class MainActivity : ComponentActivity() {
                         style = MaterialTheme.typography.bodySmall, // style of text
                         modifier = Modifier
                             .padding(bottom = 0.dp) // spacing below text
+                    )
+                    Image(
+                        painter = painter,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(170.dp)
+                            .clip(RoundedCornerShape(70))
+                            .clickable { println("Image2 Click") }
+                            .padding(23.dp)
+                    )
+                }
+            }
+        }
+    }
+
+
+    @Composable
+    fun ContentThird() {
+        val coursesThird = listOf(
+            Pair("Em Breve", painterResource(id = R.drawable.humantech)),
+            Pair("Em Breve", painterResource(id = R.drawable.modelagemdedados)),
+            Pair("Em Breve", painterResource(id = R.drawable.sistemas)),
+            Pair("Em Breve", painterResource(id = R.drawable.fundamentosdeti)),
+            Pair("Em Breve", painterResource(id = R.drawable.python))
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState())
+                .padding(0.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            coursesThird.forEach { (title, painter) ->
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = title,
+                        color = Color.White,
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier
+                            .padding(bottom = 0.dp)
+                    )
+                    Image(
+                        painter = painter,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .size(170.dp)
+                            .clip(RoundedCornerShape(70))
+                            .clickable { println("Image2 Click") }
+                            .padding(23.dp)
+                    )
+                }
+            }
+        }
+    }
+
+
+    @Composable
+    fun ContentFour() {
+        val coursesFour = listOf(
+            Pair("Em Breve", painterResource(id = R.drawable.python)),
+            Pair("Em Breve", painterResource(id = R.drawable.fundamentosdeti)),
+            Pair("Em Breve", painterResource(id = R.drawable.humantech)),
+            Pair("Em Breve", painterResource(id = R.drawable.sistemas)),
+            Pair("Em Breve", painterResource(id = R.drawable.modelagemdedados))
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .horizontalScroll(rememberScrollState())
+                .padding(0.dp),
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            coursesFour.forEach { (title, painter) ->
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                    text = title,
+                    color = Color.White,
+                    style = MaterialTheme.typography.bodySmall,
+                    modifier = Modifier
+                        .padding(bottom = 0.dp)
                     )
                     Image(
                         painter = painter,
