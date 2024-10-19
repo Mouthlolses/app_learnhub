@@ -97,4 +97,6 @@ dependencies {
     implementation(libs.androidx.navigation.compose)  // androidx.navigation:navigation-compose
     implementation(libs.ui)
     implementation(libs.ui.tooling.preview)
+    implementation(libs.retrofit)
+    implementation(libs.gson)
 }
