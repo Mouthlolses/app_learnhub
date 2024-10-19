@@ -1,7 +1,8 @@
 [versions]
 activityComposeVersion = "1.9.3"
 agp = "8.5.2"
-kotlin = "1.9.10"
+kotlin = "1.9.25"
+composeCompiler = "1.5.15"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -46,6 +47,7 @@ ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", versio
 androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gson" }
+compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "composeCompiler" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
