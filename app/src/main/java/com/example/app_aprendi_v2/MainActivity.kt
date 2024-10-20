@@ -76,8 +76,6 @@ import kotlinx.coroutines.delay
 
 
 class MainActivity : ComponentActivity() {
-    private lateinit var database: AppDatabase
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -382,7 +380,6 @@ class MainActivity : ComponentActivity() {
             Pair("Em Breve", painterResource(id = R.drawable.modelagemdedados)),
             Pair("Em Breve", painterResource(id = R.drawable.humantech))
         )
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()

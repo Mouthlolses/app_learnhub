@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
 
 
 @Composable
-fun RegisterScreen(navController: NavController = rememberNavController()) {
+fun RegisterScreen(navController: NavController) {
     val context = LocalContext.current
     val database = AppDatabase.getDatabase(context)
 
@@ -71,7 +71,11 @@ fun RegisterScreen(navController: NavController = rememberNavController()) {
         Button(onClick =  {
             val user = User(name = name, email = email, password = password)
             CoroutineScope(Dispatchers.IO).launch {
-                database.userDao().insert(user)
+               try{
+                   database.userDao().insert(user)
+               } catch (e: Exception) {
+                   e.printStackTrace()
+               }
             }
             navController.popBackStack()
         }) {
@@ -84,5 +88,39 @@ fun RegisterScreen(navController: NavController = rememberNavController()) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewRegisterScreen() {
-    RegisterScreen()
+    // Criando uma versão mockada do NavController
+    val mockNavController = rememberNavController()
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        TextField(
+            value = "",
+            onValueChange = {},
+            label = { Text("Nome") }
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = "",
+            onValueChange = {},
+            label = { Text("Email") }
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = "",
+            onValueChange = {},
+            label = { Text("Password") },
+            visualTransformation = PasswordVisualTransformation()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Button(onClick = { /* No-op */ }) {
+            Text("Register")
+        }
+    }
 }
