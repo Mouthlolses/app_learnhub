@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -16,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,7 +40,8 @@ fun RegisterScreen(navController: NavController) {
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-
+    var isLoading by remember { mutableStateOf(false) }
+    var errorMessage by remember { mutableStateOf<String?>(null) }
 
     Column(
         modifier = Modifier
@@ -50,7 +53,7 @@ fun RegisterScreen(navController: NavController) {
         TextField(
             value = name,
             onValueChange = { name = it },
-            label = { Text("Nome")}
+            label = { Text("Nome") }
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -64,24 +67,43 @@ fun RegisterScreen(navController: NavController) {
         TextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Password")},
+            label = { Text("Password") },
             visualTransformation = PasswordVisualTransformation()
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick =  {
-            val user = User(name = name, email = email, password = password)
-            CoroutineScope(Dispatchers.IO).launch {
-               try{
-                   database.userDao().insert(user)
-               } catch (e: Exception) {
-                   e.printStackTrace()
-               }
+
+        if (isLoading) {
+            CircularProgressIndicator()
+        } else {
+            Button(onClick = {
+                if (name.isNotBlank() && email.isNotBlank() && password.isNotBlank()) {
+                    isLoading = true
+                    CoroutineScope(Dispatchers.IO).launch {
+                        try {
+                            val user = User(name = name, email = email, password = password)
+                            database.userDao().insert(user)
+                            navController.popBackStack()
+                        } catch (e: Exception) {
+                            errorMessage = "Erro ao registrar: ${e.message}"
+                            isLoading = false
+                        }
+                    }
+                } else {
+                    errorMessage = "Por favor, preencha todos os campos."
+                }
+            }) {
+                Text("Register")
             }
-            navController.popBackStack()
-        }) {
-            Text("Register")
         }
 
+        // Exibir mensagem de erro
+        errorMessage?.let {
+            Text(
+                text = it,
+                color = Color.Red,
+                modifier = Modifier.padding(top = 16.dp)
+            )
+        }
     }
 }
 
