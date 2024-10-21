@@ -55,6 +55,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -71,7 +73,6 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.app_aprendi_v2.data.local.AppDatabase
 import kotlinx.coroutines.delay
 
 
@@ -95,12 +96,18 @@ class MainActivity : ComponentActivity() {
         val scrollState = rememberScrollState()
 
         Scaffold(
-            bottomBar = { BottomAppBarContent(navController) }
+            bottomBar = { BottomAppBarContent(navController) },
         ) { paddingValues ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xFF1F001F))
+                    .background(
+                        brush = Brush.linearGradient(
+                            colors = listOf(Color(0xFF1B001B), Color(0xFF410566)),
+                            start = Offset(0f, 0f),
+                            end = Offset(1000f, 1000f)
+                        )
+                    )
                     .padding(paddingValues)
                     .padding(0.dp),
             ) {
@@ -171,7 +178,7 @@ class MainActivity : ComponentActivity() {
         ) {
             LazyRow(
                 modifier = Modifier.fillMaxWidth(),
-                contentPadding = PaddingValues(0.dp), // remove padding intern if necessary
+                contentPadding = PaddingValues(0.dp), // remove padding intern
                 horizontalArrangement = Arrangement.Center
             ) {
                 items(images.size) { index ->
@@ -505,28 +512,38 @@ class MainActivity : ComponentActivity() {
     fun BottomAppBarContent(navController: NavController) {
 
         BottomAppBar(
-            modifier = Modifier.height(89.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
             containerColor = (Color(0xFF01BD09))
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
                 modifier = Modifier.weight(1f)
             ) {
                 IconButton(onClick = { navController.navigate("home") }) {
                     Icon(Icons.Filled.Star, contentDescription = "home")
                 }
-                Text(text = "Destaques", color = Color.Black, modifier = Modifier.padding(0.dp))
+                Text(text = "Destaques",
+                    color = Color.Black,
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(0.dp))
             }
-            Spacer(modifier = Modifier.width(120.dp))
+            Spacer(modifier = Modifier.width(110.dp))
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
                 modifier = Modifier.weight(1f)
             ) {
                 IconButton(onClick = { navController.navigate("register") }) {
                     Icon(Icons.Filled.AccountCircle, contentDescription = "Register")
                 }
-                Text(text = "Conta", color = Color.Black, modifier = Modifier.padding(0.dp))
+                Text(text = "Conta",
+                    color = Color.Black,
+                    fontSize = 12.sp,
+                    modifier = Modifier.padding(0.dp))
             }
         }
     }
