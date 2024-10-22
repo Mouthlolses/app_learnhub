@@ -22,9 +22,11 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -154,7 +156,6 @@ class MainActivity : ComponentActivity() {
     }
 
 
-
     @Composable
     fun Banner() {
         val images = listOf(
@@ -203,8 +204,6 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-
-
 
 
     @Composable
@@ -297,10 +296,10 @@ class MainActivity : ComponentActivity() {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            Column (
+            Column(
                 modifier = Modifier
                     .verticalScroll(scrollState)
-            ){
+            ) {
                 Text(
                     text = "O objetivo deste curso é apresentar os conceitos básicos da informática, " +
                             "os componentes dos computadores, os sistemas lógicos e as principais funções de armazenamento" +
@@ -317,7 +316,7 @@ class MainActivity : ComponentActivity() {
                 Spacer(modifier = Modifier.height(50.dp))
 
 
-                    val annotatedText = buildAnnotatedString {
+                val annotatedText = buildAnnotatedString {
                     withStyle(
                         style = SpanStyle(
                             color = Color.White
@@ -362,15 +361,17 @@ class MainActivity : ComponentActivity() {
 
                 Spacer(modifier = Modifier.height(50.dp))
 
-                Button(onClick = { navController.popBackStack() },
+                Button(
+                    onClick = { navController.popBackStack() },
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
                     shape = RoundedCornerShape(8.dp),
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(50.dp)
-                ){
-                    Text(text = "Voltar",
-                    color = Color.White,
+                ) {
+                    Text(
+                        text = "Voltar",
+                        color = Color.White,
                     )
                 }
             }
@@ -486,11 +487,11 @@ class MainActivity : ComponentActivity() {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                    text = title,
-                    color = Color.White,
-                    style = MaterialTheme.typography.bodySmall,
-                    modifier = Modifier
-                        .padding(bottom = 0.dp)
+                        text = title,
+                        color = Color.White,
+                        style = MaterialTheme.typography.bodySmall,
+                        modifier = Modifier
+                            .padding(bottom = 0.dp)
                     )
                     Image(
                         painter = painter,
@@ -507,46 +508,44 @@ class MainActivity : ComponentActivity() {
     }
 
 
-
     @Composable
     fun BottomAppBarContent(navController: NavController) {
 
         BottomAppBar(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(56.dp),
+                .height(93.dp),
             containerColor = (Color(0xFF01BD09))
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.weight(1f)
-            ) {
-                IconButton(onClick = { navController.navigate("home") }) {
-                    Icon(Icons.Filled.Star, contentDescription = "home")
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .weight(1f)
+                ) {
+                    IconButton(onClick = { navController.navigate("home") }) {
+                        Icon(Icons.Filled.Star, contentDescription = "home")
+                    }
+                    Text(
+                        text = "Destaques",
+                    )
                 }
-                Text(text = "Destaques",
-                    color = Color.Black,
-                    fontSize = 12.sp,
-                    modifier = Modifier.padding(0.dp))
-            }
-            Spacer(modifier = Modifier.width(110.dp))
-
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-                modifier = Modifier.weight(1f)
-            ) {
-                IconButton(onClick = { navController.navigate("register") }) {
-                    Icon(Icons.Filled.AccountCircle, contentDescription = "Register")
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center,
+                    modifier = Modifier
+                        .weight(1f)
+                ) {
+                    IconButton(onClick = { navController.navigate("register") }) {
+                        Icon(Icons.Filled.AccountCircle, contentDescription = "Register")
+                    }
+                    Text(
+                        text = "Conta",
+                    )
                 }
-                Text(text = "Conta",
-                    color = Color.Black,
-                    fontSize = 12.sp,
-                    modifier = Modifier.padding(0.dp))
             }
-        }
     }
+
 
 
 
