@@ -25,7 +25,7 @@ fun BottomAppBarContent(navController: NavController) {
         modifier = Modifier
             .fillMaxWidth()
             .height(93.dp),
-        containerColor = (Color(0xFF01BD09))
+        containerColor = (Color(0xFF03C40A))
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
