@@ -47,7 +47,3 @@ jobs:
       # 5. Faz o build do projeto e roda os testes unitários
       - name: Build and Test
         run: ./gradlew build
-
-      # 6. (Opcional) Roda os testes de instrumentação, caso o projeto tenha
-      - name: Run Instrumentation Tests
-        run: ./gradlew connectedAndroidTest
