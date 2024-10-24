@@ -1,5 +1,4 @@
 # This is a basic workflow to help you get started with Actions
-
 name: Android CI
 
 # Controls when the workflow will run
@@ -24,7 +23,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout code
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       # Runs a single command using the runners shell
       - name: Set up JDK
@@ -52,4 +51,3 @@ jobs:
       # 6. (Opcional) Roda os testes de instrumentação, caso o projeto tenha
       - name: Run Instrumentation Tests
         run: ./gradlew connectedAndroidTest
-
