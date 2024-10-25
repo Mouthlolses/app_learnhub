@@ -86,11 +86,8 @@ dependencies {
     annotationProcessor(libs.androidx.room.compiler) // ou annotationProcessor se não usar KAPT
     implementation(libs.androidx.room.ktx)
     // Navigation for Compose
-    implementation(libs.androidx.navigation.compose)    // androidx.navigation:navigation-compose
     // Test dependencies
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.core.ktx)
