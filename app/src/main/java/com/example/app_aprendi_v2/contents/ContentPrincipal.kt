@@ -217,3 +217,30 @@ fun CourseDetailsScreen(navController: NavController) {
         }
     }
 }
+
+@Composable
+fun CourseDetailsScreen2(navController: NavController) {
+    val context = LocalContext.current
+    val scrollState = rememberScrollState()
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF1F001F))
+            .fillMaxWidth()
+            .padding(0.dp)
+    )
+    {
+     Spacer(modifier = Modifier.height(40.dp))
+
+        Text(
+            text = "Modelagem de Dados",
+            style = MaterialTheme.typography.headlineMedium,
+            color = Color.White,
+            modifier = Modifier
+                .padding(12.dp)
+        )
+        Spacer(modifier = Modifier.padding(20.dp))
+
+    }
+}
