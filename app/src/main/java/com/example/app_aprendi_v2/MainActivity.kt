@@ -40,6 +40,7 @@ import com.example.app_aprendi_v2.contents.ContentPrincipal
 import com.example.app_aprendi_v2.contents.ContentSecond
 import com.example.app_aprendi_v2.contents.ContentThird
 import com.example.app_aprendi_v2.contents.CourseDetailsScreen
+import com.example.app_aprendi_v2.contents.CourseDetailsScreen2
 
 
 class MainActivity : ComponentActivity() {
@@ -51,6 +52,7 @@ class MainActivity : ComponentActivity() {
             NavHost(navController = navController, startDestination = "home") {
                 composable("home") { HomeScreen(navController) }
                 composable("details") { CourseDetailsScreen(navController) }
+                composable("details2") { CourseDetailsScreen2(navController)}
                 composable("register") { RegisterScreen(navController) }
             }
         }

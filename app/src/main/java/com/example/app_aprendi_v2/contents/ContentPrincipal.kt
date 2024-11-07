@@ -87,9 +87,10 @@ fun ContentPrincipal(navController: NavController) {
                             .size(170.dp)
                             .clip(RoundedCornerShape(70))
                             .clickable {
-                                if (index == 0) {
-                                    clicked = !clicked
-                                    navController.navigate("details")
+                                clicked = !clicked
+                                when(index) {
+                                    0 -> navController.navigate("details")
+                                    1 -> navController.navigate("details2")
                                 }
                             }
                             .padding(23.dp),
@@ -241,6 +242,7 @@ fun CourseDetailsScreen2(navController: NavController) {
                 .padding(12.dp)
         )
         Spacer(modifier = Modifier.padding(20.dp))
+
 
     }
 }
