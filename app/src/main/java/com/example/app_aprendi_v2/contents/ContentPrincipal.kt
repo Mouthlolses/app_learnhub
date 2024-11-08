@@ -3,7 +3,6 @@ package com.example.app_aprendi_v2.contents
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -92,6 +91,7 @@ fun ContentPrincipal(navController: NavController) {
                                 when (index) {
                                     0 -> navController.navigate("details")
                                     1 -> navController.navigate("details2")
+                                    2 -> navController.navigate("details3")
                                 }
                             }
                             .padding(23.dp),
@@ -128,7 +128,7 @@ fun CourseDetailsScreen(navController: NavController) {
         )
         Spacer(modifier = Modifier.height(20.dp))
         Image(
-            painter = painterResource(id = R.drawable.cursos_ti),
+            painter = painterResource(id = R.drawable.fundamentosdeti),
             contentDescription = "curse_TI",
             modifier = Modifier
                 .fillMaxWidth()
@@ -295,6 +295,115 @@ fun CourseDetailsScreen2(navController: NavController) {
                 pop()
             }
 
+            ClickableText(
+                text = annotatedText,
+                style = MaterialTheme.typography.headlineSmall.copy(
+                    fontSize = 16.sp
+                ),
+                onClick = { offset ->
+                    annotatedText.getStringAnnotations(
+                        tag = "URL",
+                        start = offset,
+                        end = offset
+                    )
+                        .firstOrNull()?.let { annotation ->
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))
+                            context.startActivity(intent)
+                        }
+                },
+                modifier = Modifier
+                    .padding(1.dp)
+            )
+            Spacer(modifier = Modifier.height(50.dp))
+
+            Button(
+                onClick = { navController.popBackStack() },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+            ) {
+                Text(
+                    text = "Voltar",
+                    color = Color.White,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun CourseDetailsScreen3(navController: NavController) {
+    val context = LocalContext.current
+    val scrollState = rememberScrollState()
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF1F001F))
+            .fillMaxWidth()
+            .padding(0.dp)
+    ) {
+        Spacer(modifier = Modifier.height(50.dp))
+
+        Text(
+            text = "Linguagem de Programação Python - Básico",
+            style = MaterialTheme.typography.headlineMedium,
+            color = Color.White,
+            modifier = Modifier
+                .padding(12.dp)
+        )
+        Spacer(modifier = Modifier.padding(15.dp))
+
+        Image(
+            painter = painterResource(id = R.drawable.python),
+            contentDescription = "Python",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp),
+            contentScale = ContentScale.Crop
+        )
+        Spacer(modifier = Modifier.height(40.dp))
+        Column(
+            modifier = Modifier
+                .verticalScroll(scrollState)
+        ) {
+            Text(
+                text = "A linguagem de programação Python vem crescendo muito nos últimos anos devido à sua simplicidade e," +
+                        " principalmente, à sua grande compatibilidade, pois funciona bem na maioria dos sistemas operacionais.",
+                style = MaterialTheme.typography.headlineSmall.copy(
+                    fontSize = 18.sp
+                ),
+                color = Color.White,
+                textAlign = TextAlign.Justify,
+                modifier = Modifier
+                    .padding(3.dp)
+            )
+            Spacer(modifier = Modifier.height(50.dp))
+
+            val annotatedText = buildAnnotatedString {
+                withStyle(
+                    style = SpanStyle(
+                        color = Color.White
+                    )
+                ) {
+                    append("Para ter acesso ao seu curso ")
+                }
+                pushStringAnnotation(
+                    tag = "URL",
+                    annotation = "https://www.ev.org.br/cursos/linguagem-de-programacao-python-basico"
+                )
+                withStyle(
+                    style = SpanStyle(
+                        color = Color.Green,
+                        textDecoration = TextDecoration.Underline
+                    )
+                ) {
+                    append("Clique aqui")
+                }
+                pop()
+            }
             ClickableText(
                 text = annotatedText,
                 style = MaterialTheme.typography.headlineSmall.copy(
