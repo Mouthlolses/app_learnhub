@@ -3,6 +3,7 @@ package com.example.app_aprendi_v2.contents
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
@@ -88,7 +89,7 @@ fun ContentPrincipal(navController: NavController) {
                             .clip(RoundedCornerShape(70))
                             .clickable {
                                 clicked = !clicked
-                                when(index) {
+                                when (index) {
                                     0 -> navController.navigate("details")
                                     1 -> navController.navigate("details2")
                                 }
@@ -232,7 +233,7 @@ fun CourseDetailsScreen2(navController: NavController) {
             .padding(0.dp)
     )
     {
-     Spacer(modifier = Modifier.height(40.dp))
+     Spacer(modifier = Modifier.height(50.dp))
 
         Text(
             text = "Modelagem de Dados",
@@ -241,8 +242,93 @@ fun CourseDetailsScreen2(navController: NavController) {
             modifier = Modifier
                 .padding(12.dp)
         )
-        Spacer(modifier = Modifier.padding(20.dp))
+        Spacer(modifier = Modifier.padding(15.dp))
 
+        Image(
+            painter = painterResource(R.drawable.modelagemdedados),
+            contentDescription = "Modelagem de Dados",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp),
+            contentScale = ContentScale.Crop
+        )
+        Spacer(modifier = Modifier.height(40.dp))
 
+        Column(
+            modifier = Modifier
+                .verticalScroll(scrollState)
+        ) {
+            Text(
+                text = "O assunto modelagem de dados é bem relevante, principalmente, nos dias de hoje," +
+                        "pois o armazenamento e a administração de dados tornaram-se essenciais com a" +
+                        " evolução tecnológica ocorrida nos últimos anos.",
+                style = MaterialTheme.typography.headlineSmall.copy(
+                    fontSize = 18.sp
+                ),
+                color = Color.White,
+                textAlign = TextAlign.Justify,
+                modifier = Modifier
+                    .padding(3.dp)
+            )
+            Spacer(modifier = Modifier.height(50.dp))
+
+            val annotatedText = buildAnnotatedString {
+                withStyle(
+                    style = SpanStyle(
+                        color = Color.White
+                    )
+                ) {
+                    append("Para ter acesso ao seu curso ")
+                }
+                pushStringAnnotation(
+                    tag = "URL",
+                    annotation = "https://www.ev.org.br/cursos/modelagem-de-dados"
+                )
+                withStyle(
+                    style = SpanStyle(
+                        color = Color.Green,
+                        textDecoration = TextDecoration.Underline
+                    )
+                ) {
+                    append("Clique aqui")
+                }
+                pop()
+            }
+
+            ClickableText(
+                text = annotatedText,
+                style = MaterialTheme.typography.headlineSmall.copy(
+                    fontSize = 16.sp
+                ),
+                onClick = { offset ->
+                    annotatedText.getStringAnnotations(
+                        tag = "URL",
+                        start = offset,
+                        end = offset
+                    )
+                        .firstOrNull()?.let { annotation ->
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))
+                            context.startActivity(intent)
+                        }
+                },
+                modifier = Modifier
+                    .padding(1.dp)
+            )
+            Spacer(modifier = Modifier.height(50.dp))
+
+            Button(
+                onClick = { navController.popBackStack() },
+                colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
+                shape = RoundedCornerShape(8.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+            ) {
+                Text(
+                    text = "Voltar",
+                    color = Color.White,
+                )
+            }
+        }
     }
 }
