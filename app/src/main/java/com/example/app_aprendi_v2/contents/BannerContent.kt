@@ -31,9 +31,7 @@ import kotlinx.coroutines.delay
 @Composable
 fun Banner() {
     val images = listOf(
-        painterResource(id = R.drawable.bannerone),
-        painterResource(id = R.drawable.bannertree),
-        painterResource(id = R.drawable.bannerfour)
+        painterResource(id = R.drawable.bannerone)
     )
     var currentImageIndex by remember { mutableIntStateOf(0) }
 
