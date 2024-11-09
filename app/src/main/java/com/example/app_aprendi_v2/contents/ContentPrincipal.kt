@@ -31,7 +31,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.painter.BrushPainter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -49,9 +52,9 @@ import com.example.app_aprendi_v2.R
 @Composable
 fun ContentPrincipal(navController: NavController) {
     val courses = listOf(
-        Pair("Disponível!", painterResource(id = R.drawable.fundamentosdeti)),
-        Pair("Em Breve", painterResource(id = R.drawable.modelagemdedados)),
-        Pair("Em Breve", painterResource(id = R.drawable.python)),
+        Pair("Disponível", painterResource(id = R.drawable.fundamentosdeti)),
+        Pair("Disponível", painterResource(id = R.drawable.modelagemdedados)),
+        Pair("Disponível", painterResource(id = R.drawable.python)),
         Pair("Em Breve", painterResource(id = R.drawable.humantech)),
         Pair("Em Breve", painterResource(id = R.drawable.sistemas))
     )
@@ -111,7 +114,13 @@ fun CourseDetailsScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF1F001F))
+            .background(
+                brush = Brush.linearGradient(
+                    colors = listOf(Color(0xFF1B001B), Color(0xFF410566)),
+                    start = Offset(0f, 0f),
+                    end = Offset(1000f, 1000f)
+                )
+            )
             .fillMaxWidth()
             .padding(0.dp)
     ) {
@@ -228,7 +237,13 @@ fun CourseDetailsScreen2(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF1F001F))
+            .background(
+                brush = Brush.linearGradient(
+                    colors = listOf(Color(0xFF1B001B), Color(0xFF410566)),
+                    start = Offset(0f, 0f),
+                    end = Offset(1000f, 1000f)
+                )
+            )
             .fillMaxWidth()
             .padding(0.dp)
     )
