@@ -356,7 +356,13 @@ fun CourseDetailsScreen3(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF1F001F))
+            .background(
+                brush = Brush.linearGradient(
+                    colors = listOf(Color(0xFF1B001B), Color(0xFF410566)),
+                    start = Offset(0f, 0f),
+                    end = Offset(1000f, 1000f)
+                )
+            )
             .fillMaxWidth()
             .padding(0.dp)
     ) {
