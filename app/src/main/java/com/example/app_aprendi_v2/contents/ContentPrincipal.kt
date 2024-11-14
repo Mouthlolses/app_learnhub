@@ -141,7 +141,8 @@ fun CourseDetailsScreen(navController: NavController) {
             contentDescription = "curse_TI",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp),
+                .height(300.dp)
+                .padding(10.dp),
             contentScale = ContentScale.Crop
         )
 
@@ -264,7 +265,8 @@ fun CourseDetailsScreen2(navController: NavController) {
             contentDescription = "Modelagem de Dados",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp),
+                .height(300.dp)
+                .padding(10.dp),
             contentScale = ContentScale.Crop
         )
         Spacer(modifier = Modifier.height(40.dp))
@@ -382,7 +384,8 @@ fun CourseDetailsScreen3(navController: NavController) {
             contentDescription = "Python",
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp),
+                .height(300.dp)
+                .padding(10.dp),
             contentScale = ContentScale.Crop
         )
         Spacer(modifier = Modifier.height(40.dp))
