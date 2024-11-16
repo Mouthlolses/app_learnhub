@@ -31,7 +31,10 @@ import kotlinx.coroutines.delay
 @Composable
 fun Banner() {
     val images = listOf(
-        painterResource(id = R.drawable.banner_de_cursos_de_tecnologia_de_nome_learnhub__descri__o_em_portugues)
+        painterResource(id = R.drawable.banner_de_cursos_de_tecnologia_de_nome_learnhub__descri__o_em_portugues),
+        painterResource(id = R.drawable.banner_para_a_pagina_inicial_de_um_aplicativo_de_cursos_de_tecnologia_de_nome_learnhub),
+        painterResource(id = R.drawable.banner_para_a_pagina_inicial_de_um_aplicativo_de_cursos_de_tecnologia_de_nome_learnhub__2_),
+        painterResource(id = R.drawable.banner_para_a_pagina_inicial_de_um_aplicativo_de_cursos_de_tecnologia_de_nome_learnhub__1_)
     )
     var currentImageIndex by remember { mutableIntStateOf(0) }
 
