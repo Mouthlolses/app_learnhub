@@ -25,11 +25,11 @@ import com.example.app_aprendi_v2.R
 @Composable
 fun ContentSecond() {
     val coursesTwo = listOf(
-        Pair("Em Breve", painterResource(id = R.drawable.sistemas)),
-        Pair("Em Breve", painterResource(id = R.drawable.python)),
-        Pair("Em Breve", painterResource(id = R.drawable.fundamentosdeti)),
-        Pair("Em Breve", painterResource(id = R.drawable.modelagemdedados)),
-        Pair("Em Breve", painterResource(id = R.drawable.humantech))
+        Pair("Em Breve", painterResource(id = R.drawable.none)),
+        Pair("Em Breve", painterResource(id = R.drawable.none)),
+        Pair("Em Breve", painterResource(id = R.drawable.none)),
+        Pair("Em Breve", painterResource(id = R.drawable.none)),
+        Pair("Em Breve", painterResource(id = R.drawable.none))
     )
     Row(
         modifier = Modifier
