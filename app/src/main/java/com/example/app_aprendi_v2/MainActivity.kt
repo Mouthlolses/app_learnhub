@@ -34,7 +34,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.app_aprendi_v2.contents.Banner
-import com.example.app_aprendi_v2.contents.BottomAppBarContent
 import com.example.app_aprendi_v2.contents.ContentFour
 import com.example.app_aprendi_v2.contents.ContentPrincipal
 import com.example.app_aprendi_v2.contents.ContentSecond
@@ -69,9 +68,8 @@ class MainActivity : ComponentActivity() {
     fun HomeScreen(navController: NavController) {
         val scrollState = rememberScrollState()
 
-        Scaffold(
-            bottomBar = { BottomAppBarContent(navController) },
-        ) { paddingValues ->
+        Scaffold()
+        { paddingValues ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()
