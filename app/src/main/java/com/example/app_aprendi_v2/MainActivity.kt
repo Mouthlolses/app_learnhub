@@ -43,6 +43,7 @@ import com.example.app_aprendi_v2.contents.CourseDetailsScreen2
 import com.example.app_aprendi_v2.contents.CourseDetailsScreen3
 import com.example.app_aprendi_v2.contents.CourseDetailsScreen4
 import com.example.app_aprendi_v2.contents.CourseDetailsScreen5
+import com.example.app_aprendi_v2.contents.SecondCoursesDetailsScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -58,7 +59,7 @@ class MainActivity : ComponentActivity() {
                 composable("details3") { CourseDetailsScreen3(navController) }
                 composable("details4") { CourseDetailsScreen4(navController) }
                 composable("details5") { CourseDetailsScreen5(navController) }
-                composable("register") { RegisterScreen(navController) }
+                composable("details6") { SecondCoursesDetailsScreen(navController) }
             }
         }
     }
@@ -112,20 +113,18 @@ class MainActivity : ComponentActivity() {
                         .padding(0.dp)
                 ) {
                     Banner()
-                    Spacer(modifier = Modifier.height(60.dp))
+                    Spacer(modifier = Modifier.height(40.dp))
                     ContentPrincipal(navController)
-                    Spacer(modifier = Modifier.height((40.dp)))
-                    ContentSecond()
-                    Spacer(modifier = Modifier.height((40.dp)))
+                    Spacer(modifier = Modifier.height(40.dp))
+                    ContentSecond(navController)
+                    Spacer(modifier = Modifier.height(40.dp))
                     ContentThird()
-                    Spacer(modifier = Modifier.height((40.dp)))
+                    Spacer(modifier = Modifier.height(40.dp))
                     ContentFour()
                 }
             }
         }
     }
-
-
 
 
     @Preview(showBackground = true)

@@ -17,6 +17,12 @@ material3Android = "1.3.0"
 room = "2.6.1"
 retrofit = "2.9.0"
 gson = "2.9.0"
+appcompatVersion = "1.7.0"
+materialVersion = "1.12.0"
+annotationVersion = "1.6.0"
+constraintlayoutVersion = "2.2.0"
+lifecycleLivedataKtxVersion = "2.8.7"
+lifecycleViewmodelKtxVersion = "2.8.7"
 
 
 [libraries]
@@ -48,6 +54,12 @@ androidx-material3-android = { group = "androidx.compose.material3", name = "mat
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gson" }
 compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "composeCompiler" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompatVersion" }
+material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotationVersion" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayoutVersion" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtxVersion" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
