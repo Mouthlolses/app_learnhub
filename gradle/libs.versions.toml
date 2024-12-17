@@ -1,25 +1,34 @@
 [versions]
-activityComposeVersion = "1.9.2"
-agp = "8.5.2"
-kotlin = "1.9.0"
+activityComposeVersion = "1.9.3"
+agp = "8.7.2"
+kotlin = "1.9.25"
+composeCompiler = "1.5.15"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
-composeBom = "2024.09.02"
-compose = "1.7.2" # ou a versão mais recente disponível
+composeBom = "2024.10.00"
+compose = "1.7.4"
 lifecycleRuntimeKtxVersion = "2.8.6"
-navigation = "2.8.1" # ou a versão mais recente disponível
-ui = "1.7.2"
-uiToolingPreview = "1.7.2"
+navigation = "2.8.3"
+ui = "1.7.4"
+uiToolingPreview = "1.7.4"
 material3Android = "1.3.0"
 room = "2.6.1"
+retrofit = "2.9.0"
+gson = "2.9.0"
+appcompatVersion = "1.7.0"
+materialVersion = "1.12.0"
+annotationVersion = "1.6.0"
+constraintlayoutVersion = "2.2.0"
+lifecycleLivedataKtxVersion = "2.8.7"
+lifecycleViewmodelKtxVersion = "2.8.7"
 
 
 [libraries]
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
-androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version = "2.6.1"}
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtxVersion" }
 mockito-core = "org.mockito:mockito-core:5.3.1"
@@ -42,7 +51,15 @@ androidx-compose-foundation = { module = "androidx.compose.foundation:foundation
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
 androidx-material3-android = { group = "androidx.compose.material3", name = "material3-android", version.ref = "material3Android" }
-
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "gson" }
+compose-compiler = { group = "androidx.compose.compiler", name = "compiler", version.ref = "composeCompiler" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompatVersion" }
+material = { group = "com.google.android.material", name = "material", version.ref = "materialVersion" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotationVersion" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayoutVersion" }
+androidx-lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "lifecycleLivedataKtxVersion" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtxVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -38,9 +38,10 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
     packaging {
         resources {
@@ -52,6 +53,16 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.material3.android)
+    // Room dependencies
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    //
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.kotlin)
     androidTestImplementation(libs.mockito.android)
@@ -62,7 +73,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -83,11 +93,8 @@ dependencies {
     annotationProcessor(libs.androidx.room.compiler) // ou annotationProcessor se não usar KAPT
     implementation(libs.androidx.room.ktx)
     // Navigation for Compose
-    implementation(libs.androidx.navigation.compose)    // androidx.navigation:navigation-compose
     // Test dependencies
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.core.ktx)
@@ -97,4 +104,6 @@ dependencies {
     implementation(libs.androidx.navigation.compose)  // androidx.navigation:navigation-compose
     implementation(libs.ui)
     implementation(libs.ui.tooling.preview)
+    implementation(libs.retrofit)
+    implementation(libs.gson)
 }
