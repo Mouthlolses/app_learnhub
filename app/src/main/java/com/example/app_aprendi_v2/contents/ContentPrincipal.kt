@@ -55,7 +55,10 @@ fun ContentPrincipal(navController: NavController) {
         Pair("", painterResource(id = R.drawable.modelagemdedados)),
         Pair("", painterResource(id = R.drawable.python)),
         Pair("", painterResource(id = R.drawable.bancodedados)),
-        Pair("", painterResource(id = R.drawable.introdu__o___programa__o_orientada_a_objetos__poo_))
+        Pair(
+            "",
+            painterResource(id = R.drawable.introdu__o___programa__o_orientada_a_objetos__poo_)
+        )
     )
     var clicked by remember { mutableStateOf(false) }
 
@@ -137,22 +140,20 @@ fun CourseDetailsScreen(navController: NavController) {
                 .padding(12.dp)
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Image(
-            painter = painterResource(id = R.drawable.fundamentosdeti),
-            contentDescription = "curse_TI",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-                .padding(10.dp),
-            contentScale = ContentScale.Crop
-        )
-
-        Spacer(modifier = Modifier.height(40.dp))
 
         Column(
             modifier = Modifier
                 .verticalScroll(scrollState)
         ) {
+            Image(
+                painter = painterResource(id = R.drawable.fundamentosdeti),
+                contentDescription = "curse_TI",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp)
+                    .padding(10.dp),
+                contentScale = ContentScale.Crop
+            )
             Text(
                 text = "• O objetivo deste curso é apresentar os conceitos básicos da informática, " +
                         "os componentes dos computadores, os sistemas lógicos e as principais funções de armazenamento" +
@@ -250,7 +251,7 @@ fun CourseDetailsScreen2(navController: NavController) {
             .padding(0.dp)
     )
     {
-     Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
         Text(
             text = "Modelagem de Dados",
@@ -259,23 +260,21 @@ fun CourseDetailsScreen2(navController: NavController) {
             modifier = Modifier
                 .padding(12.dp)
         )
-        Spacer(modifier = Modifier.padding(15.dp))
-
-        Image(
-            painter = painterResource(R.drawable.modelagemdedados),
-            contentDescription = "Modelagem de Dados",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-                .padding(10.dp),
-            contentScale = ContentScale.Crop
-        )
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.padding(12.dp))
 
         Column(
             modifier = Modifier
                 .verticalScroll(scrollState)
         ) {
+            Image(
+                painter = painterResource(R.drawable.modelagemdedados),
+                contentDescription = "Modelagem de Dados",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp)
+                    .padding(10.dp),
+                contentScale = ContentScale.Crop
+            )
             Text(
                 text = "• O assunto modelagem de dados é bem relevante, principalmente, nos dias de hoje," +
                         "pois o armazenamento e a administração de dados tornaram-se essenciais com a" +
@@ -378,22 +377,21 @@ fun CourseDetailsScreen3(navController: NavController) {
             modifier = Modifier
                 .padding(12.dp)
         )
-        Spacer(modifier = Modifier.padding(15.dp))
+        Spacer(modifier = Modifier.padding(20.dp))
 
-        Image(
-            painter = painterResource(id = R.drawable.python),
-            contentDescription = "Python",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-                .padding(10.dp),
-            contentScale = ContentScale.Crop
-        )
-        Spacer(modifier = Modifier.height(40.dp))
         Column(
             modifier = Modifier
                 .verticalScroll(scrollState)
         ) {
+            Image(
+                painter = painterResource(id = R.drawable.python),
+                contentDescription = "Python",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp)
+                    .padding(10.dp),
+                contentScale = ContentScale.Crop
+            )
             Text(
                 text = "•  A linguagem de programação Python vem crescendo muito nos últimos anos devido à sua simplicidade e," +
                         " principalmente, à sua grande compatibilidade, pois funciona bem na maioria dos sistemas operacionais.",
@@ -494,22 +492,21 @@ fun CourseDetailsScreen4(navController: NavController) {
             modifier = Modifier
                 .padding(12.dp)
         )
-        Spacer(modifier = Modifier.padding(15.dp))
+        Spacer(modifier = Modifier.padding(20.dp))
 
-        Image(
-            painter = painterResource(id = R.drawable.bancodedados),
-            contentDescription = "BancoDeDados",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-                .padding(10.dp),
-            contentScale = ContentScale.Crop
-        )
-        Spacer(modifier = Modifier.height(40.dp))
         Column(
             modifier = Modifier
                 .verticalScroll(scrollState)
         ) {
+            Image(
+                painter = painterResource(id = R.drawable.bancodedados),
+                contentDescription = "BancoDeDados",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp)
+                    .padding(10.dp),
+                contentScale = ContentScale.Crop
+            )
             Text(
                 text = "⚠ Atenção: Trilha de Conhecimento\n" +
                         "\n• Um Banco de Dados é uma coleção organizada de informações estruturadas," +
@@ -587,7 +584,7 @@ fun CourseDetailsScreen4(navController: NavController) {
 }
 
 @Composable
-fun CourseDetailsScreen5(navController: NavController){
+fun CourseDetailsScreen5(navController: NavController) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
 
@@ -613,23 +610,21 @@ fun CourseDetailsScreen5(navController: NavController){
             modifier = Modifier
                 .padding(12.dp)
         )
-        Spacer(modifier = Modifier.padding(15.dp))
-
-        Image(
-            painter = painterResource(id = R.drawable.introdu__o___programa__o_orientada_a_objetos__poo_),
-            contentDescription = "Introdução à Programação Orientada a Objetos (POO)",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-                .padding(10.dp),
-            contentScale = ContentScale.Crop
-        )
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.padding(20.dp))
 
         Column(
             modifier = Modifier
                 .verticalScroll(scrollState)
         ) {
+            Image(
+                painter = painterResource(id = R.drawable.introdu__o___programa__o_orientada_a_objetos__poo_),
+                contentDescription = "Introdução à Programação Orientada a Objetos (POO)",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp)
+                    .padding(10.dp),
+                contentScale = ContentScale.Crop
+            )
             Text(
                 text = "• O objetivo deste curso é apresentar o conceito da programação orientada a objetos e as diferenças entre a programação estruturada e a POO," +
                         " que surgiu da necessidade de deixar a programação mais fácil para os desenvolvedores de software.",

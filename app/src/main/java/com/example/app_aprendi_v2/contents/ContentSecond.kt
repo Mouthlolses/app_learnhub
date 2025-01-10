@@ -131,21 +131,20 @@ fun SecondCoursesDetailsScreen(navController: NavController) {
                 .padding(12.dp)
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Image(
-            painter = painterResource(R.drawable.logo_inform_tica_b_sica),
-            contentDescription = "curse_TI",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(300.dp)
-                .padding(10.dp),
-            contentScale = ContentScale.Crop
-        )
-        Spacer(modifier = Modifier.height(40.dp))
 
         Column(
             modifier = Modifier
                 .verticalScroll(scrollState)
         ) {
+            Image(
+                painter = painterResource(R.drawable.logo_inform_tica_b_sica),
+                contentDescription = "curse_TI",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp)
+                    .padding(10.dp),
+                contentScale = ContentScale.Crop
+            )
             Text(
                 text = " • Este curso tem como foco mostrar na prática o uso das ferramentas computacionais básicas que são utilizadas nas tecnologias da informação e comunicação. " +
                         "Ao longo desta disciplina vamos utilizar ferramentas como planilhas eletrônicas, " +
