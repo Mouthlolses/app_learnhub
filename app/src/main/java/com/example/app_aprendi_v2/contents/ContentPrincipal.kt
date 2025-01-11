@@ -55,9 +55,7 @@ fun ContentPrincipal(navController: NavController) {
         Pair("", painterResource(id = R.drawable.modelagemdedados)),
         Pair("", painterResource(id = R.drawable.python)),
         Pair("", painterResource(id = R.drawable.bancodedados)),
-        Pair(
-            "",
-            painterResource(id = R.drawable.introdu__o___programa__o_orientada_a_objetos__poo_)
+        Pair("", painterResource(id = R.drawable.introdu__o___programa__o_orientada_a_objetos__poo_)
         )
     )
     var clicked by remember { mutableStateOf(false) }
