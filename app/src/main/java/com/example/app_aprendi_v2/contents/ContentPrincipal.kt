@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,6 +23,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -55,7 +57,8 @@ fun ContentPrincipal(navController: NavController) {
         Pair("", painterResource(id = R.drawable.modelagemdedados)),
         Pair("", painterResource(id = R.drawable.python)),
         Pair("", painterResource(id = R.drawable.bancodedados)),
-        Pair("", painterResource(id = R.drawable.introdu__o___programa__o_orientada_a_objetos__poo_)
+        Pair(
+            "", painterResource(id = R.drawable.introdu__o___programa__o_orientada_a_objetos__poo_)
         )
     )
     var clicked by remember { mutableStateOf(false) }
@@ -124,7 +127,7 @@ fun CourseDetailsScreen(navController: NavController) {
                 )
             )
             .fillMaxWidth()
-            .padding(0.dp)
+            .padding(0.dp),
     ) {
 
         Spacer(modifier = Modifier.height(40.dp))
@@ -210,22 +213,8 @@ fun CourseDetailsScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(1.dp)
             )
-
             Spacer(modifier = Modifier.height(50.dp))
 
-            Button(
-                onClick = { navController.popBackStack() },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            ) {
-                Text(
-                    text = "Voltar",
-                    color = Color.White,
-                )
-            }
         }
     }
 }
@@ -331,19 +320,6 @@ fun CourseDetailsScreen2(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(50.dp))
 
-            Button(
-                onClick = { navController.popBackStack() },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            ) {
-                Text(
-                    text = "Voltar",
-                    color = Color.White,
-                )
-            }
         }
     }
 }
@@ -446,19 +422,6 @@ fun CourseDetailsScreen3(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(50.dp))
 
-            Button(
-                onClick = { navController.popBackStack() },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            ) {
-                Text(
-                    text = "Voltar",
-                    color = Color.White,
-                )
-            }
         }
     }
 }
@@ -564,19 +527,6 @@ fun CourseDetailsScreen4(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(50.dp))
 
-            Button(
-                onClick = { navController.popBackStack() },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            ) {
-                Text(
-                    text = "Voltar",
-                    color = Color.White,
-                )
-            }
         }
     }
 }
@@ -679,19 +629,7 @@ fun CourseDetailsScreen5(navController: NavController) {
             )
             Spacer(modifier = Modifier.height(50.dp))
 
-            Button(
-                onClick = { navController.popBackStack() },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            ) {
-                Text(
-                    text = "Voltar",
-                    color = Color.White,
-                )
-            }
+
         }
     }
 }
