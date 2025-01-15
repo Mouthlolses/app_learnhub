@@ -1,6 +1,7 @@
 package com.example.app_aprendi_v2.contents
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -44,9 +45,12 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.app_aprendi_v2.R
 
 
@@ -116,105 +120,109 @@ fun CourseDetailsScreen(navController: NavController) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.linearGradient(
-                    colors = listOf(Color(0xFF1B001B), Color(0xFF410566)),
-                    start = Offset(0f, 0f),
-                    end = Offset(1000f, 1000f)
-                )
-            )
-            .fillMaxWidth()
-            .padding(0.dp),
-    ) {
-
-        Spacer(modifier = Modifier.height(40.dp))
-
-        Text(
-            text = "Fundamentos de TI:" +
-                    " Hardware e Software",
-            style = MaterialTheme.typography.headlineMedium,
-            color = Color.White,
-            modifier = Modifier
-                .padding(12.dp)
-        )
-        Spacer(modifier = Modifier.height(20.dp))
-
+    Scaffold()
+    { paddingValues ->
         Column(
             modifier = Modifier
-                .verticalScroll(scrollState)
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.fundamentosdeti),
-                contentDescription = "curse_TI",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp)
-                    .padding(10.dp),
-                contentScale = ContentScale.Crop
-            )
-            Text(
-                text = "• O objetivo deste curso é apresentar os conceitos básicos da informática, " +
-                        "os componentes dos computadores, os sistemas lógicos e as principais funções de armazenamento" +
-                        " e processamento que envolvem o poder computacional.",
-                style = MaterialTheme.typography.headlineSmall.copy(
-                    fontSize = 15.sp
-                ),
-                color = Color.White,
-                textAlign = TextAlign.Justify,
-                modifier = Modifier
-                    .padding(8.dp)
-            )
-
-            Spacer(modifier = Modifier.height(50.dp))
-
-
-            val annotatedText = buildAnnotatedString {
-                withStyle(
-                    style = SpanStyle(
-                        color = Color.White
+                .fillMaxSize()
+                .background(
+                    brush = Brush.linearGradient(
+                        colors = listOf(Color(0xFF1B001B), Color(0xFF410566)),
+                        start = Offset(0f, 0f),
+                        end = Offset(1000f, 1000f)
                     )
-                ) {
-                    append(" Para ter acesso ao seu curso ")
-                }
-                pushStringAnnotation(
-                    tag = "URL",
-                    annotation = "https://www.ev.org.br/cursos/fundamentos-de-ti-hardware-e-software"
                 )
-                withStyle(
-                    style = SpanStyle(
-                        color = Color.Green,
-                        textDecoration = TextDecoration.Underline
-                    )
-                ) {
-                    append("Clique aqui")
-                }
-                pop()
-            }
+                .fillMaxWidth()
+                .padding(paddingValues)
+                .padding(0.dp),
+        ) {
 
-            ClickableText(
-                text = annotatedText,
-                style = MaterialTheme.typography.headlineSmall.copy(
-                    fontSize = 16.sp
-                ),
-                onClick = { offset ->
-                    annotatedText.getStringAnnotations(
-                        tag = "URL",
-                        start = offset,
-                        end = offset
-                    )
-                        .firstOrNull()?.let { annotation ->
-                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))
-                            context.startActivity(intent)
-                        }
-                },
+            Spacer(modifier = Modifier.height(40.dp))
+
+            Text(
+                text = "Fundamentos de TI:" +
+                        " Hardware e Software",
+                style = MaterialTheme.typography.headlineMedium,
+                color = Color.White,
                 modifier = Modifier
-                    .padding(1.dp)
+                    .padding(12.dp)
             )
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
+            Column(
+                modifier = Modifier
+                    .verticalScroll(scrollState)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.fundamentosdeti),
+                    contentDescription = "curse_TI",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp)
+                        .padding(10.dp),
+                    contentScale = ContentScale.Crop
+                )
+                Text(
+                    text = "• O objetivo deste curso é apresentar os conceitos básicos da informática, " +
+                            "os componentes dos computadores, os sistemas lógicos e as principais funções de armazenamento" +
+                            " e processamento que envolvem o poder computacional.",
+                    style = MaterialTheme.typography.headlineSmall.copy(
+                        fontSize = 15.sp
+                    ),
+                    color = Color.White,
+                    textAlign = TextAlign.Justify,
+                    modifier = Modifier
+                        .padding(8.dp)
+                )
+
+                Spacer(modifier = Modifier.height(50.dp))
+
+
+                val annotatedText = buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.White
+                        )
+                    ) {
+                        append(" Para ter acesso ao seu curso ")
+                    }
+                    pushStringAnnotation(
+                        tag = "URL",
+                        annotation = "https://www.ev.org.br/cursos/fundamentos-de-ti-hardware-e-software"
+                    )
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.Green,
+                            textDecoration = TextDecoration.Underline
+                        )
+                    ) {
+                        append("Clique aqui")
+                    }
+                    pop()
+                }
+
+                ClickableText(
+                    text = annotatedText,
+                    style = MaterialTheme.typography.headlineSmall.copy(
+                        fontSize = 16.sp
+                    ),
+                    onClick = { offset ->
+                        annotatedText.getStringAnnotations(
+                            tag = "URL",
+                            start = offset,
+                            end = offset
+                        )
+                            .firstOrNull()?.let { annotation ->
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))
+                                context.startActivity(intent)
+                            }
+                    },
+                    modifier = Modifier
+                        .padding(1.dp)
+                )
+                Spacer(modifier = Modifier.height(50.dp))
+
+            }
         }
     }
 }
@@ -224,102 +232,106 @@ fun CourseDetailsScreen2(navController: NavController) {
     val context = LocalContext.current
     val scrollState = rememberScrollState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.linearGradient(
-                    colors = listOf(Color(0xFF1B001B), Color(0xFF410566)),
-                    start = Offset(0f, 0f),
-                    end = Offset(1000f, 1000f)
-                )
-            )
-            .fillMaxWidth()
-            .padding(0.dp)
-    )
-    {
-        Spacer(modifier = Modifier.height(50.dp))
-
-        Text(
-            text = "Modelagem de Dados",
-            style = MaterialTheme.typography.headlineMedium,
-            color = Color.White,
-            modifier = Modifier
-                .padding(12.dp)
-        )
-        Spacer(modifier = Modifier.padding(12.dp))
-
+    Scaffold()
+    { paddingValues ->
         Column(
             modifier = Modifier
-                .verticalScroll(scrollState)
-        ) {
-            Image(
-                painter = painterResource(R.drawable.modelagemdedados),
-                contentDescription = "Modelagem de Dados",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp)
-                    .padding(10.dp),
-                contentScale = ContentScale.Crop
-            )
-            Text(
-                text = "• O assunto modelagem de dados é bem relevante, principalmente, nos dias de hoje," +
-                        "pois o armazenamento e a administração de dados tornaram-se essenciais com a" +
-                        " evolução tecnológica ocorrida nos últimos anos.",
-                style = MaterialTheme.typography.headlineSmall.copy(
-                    fontSize = 15.sp
-                ),
-                color = Color.White,
-                textAlign = TextAlign.Justify,
-                modifier = Modifier
-                    .padding(8.dp)
-            )
-            Spacer(modifier = Modifier.height(50.dp))
-
-            val annotatedText = buildAnnotatedString {
-                withStyle(
-                    style = SpanStyle(
-                        color = Color.White
+                .fillMaxSize()
+                .background(
+                    brush = Brush.linearGradient(
+                        colors = listOf(Color(0xFF1B001B), Color(0xFF410566)),
+                        start = Offset(0f, 0f),
+                        end = Offset(1000f, 1000f)
                     )
-                ) {
-                    append(" Para ter acesso ao seu curso ")
-                }
-                pushStringAnnotation(
-                    tag = "URL",
-                    annotation = "https://www.ev.org.br/cursos/modelagem-de-dados"
                 )
-                withStyle(
-                    style = SpanStyle(
-                        color = Color.Green,
-                        textDecoration = TextDecoration.Underline
-                    )
-                ) {
-                    append("Clique aqui")
-                }
-                pop()
-            }
-
-            ClickableText(
-                text = annotatedText,
-                style = MaterialTheme.typography.headlineSmall.copy(
-                    fontSize = 16.sp
-                ),
-                onClick = { offset ->
-                    annotatedText.getStringAnnotations(
-                        tag = "URL",
-                        start = offset,
-                        end = offset
-                    )
-                        .firstOrNull()?.let { annotation ->
-                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))
-                            context.startActivity(intent)
-                        }
-                },
-                modifier = Modifier
-                    .padding(1.dp)
-            )
+                .fillMaxWidth()
+                .padding(paddingValues)
+                .padding(0.dp)
+        )
+        {
             Spacer(modifier = Modifier.height(50.dp))
 
+            Text(
+                text = "Modelagem de Dados",
+                style = MaterialTheme.typography.headlineMedium,
+                color = Color.White,
+                modifier = Modifier
+                    .padding(12.dp)
+            )
+            Spacer(modifier = Modifier.padding(12.dp))
+
+            Column(
+                modifier = Modifier
+                    .verticalScroll(scrollState)
+            ) {
+                Image(
+                    painter = painterResource(R.drawable.modelagemdedados),
+                    contentDescription = "Modelagem de Dados",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(300.dp)
+                        .padding(10.dp),
+                    contentScale = ContentScale.Crop
+                )
+                Text(
+                    text = "• O assunto modelagem de dados é bem relevante, principalmente, nos dias de hoje," +
+                            "pois o armazenamento e a administração de dados tornaram-se essenciais com a" +
+                            " evolução tecnológica ocorrida nos últimos anos.",
+                    style = MaterialTheme.typography.headlineSmall.copy(
+                        fontSize = 15.sp
+                    ),
+                    color = Color.White,
+                    textAlign = TextAlign.Justify,
+                    modifier = Modifier
+                        .padding(8.dp)
+                )
+                Spacer(modifier = Modifier.height(50.dp))
+
+                val annotatedText = buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.White
+                        )
+                    ) {
+                        append(" Para ter acesso ao seu curso ")
+                    }
+                    pushStringAnnotation(
+                        tag = "URL",
+                        annotation = "https://www.ev.org.br/cursos/modelagem-de-dados"
+                    )
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.Green,
+                            textDecoration = TextDecoration.Underline
+                        )
+                    ) {
+                        append("Clique aqui")
+                    }
+                    pop()
+                }
+
+                ClickableText(
+                    text = annotatedText,
+                    style = MaterialTheme.typography.headlineSmall.copy(
+                        fontSize = 16.sp
+                    ),
+                    onClick = { offset ->
+                        annotatedText.getStringAnnotations(
+                            tag = "URL",
+                            start = offset,
+                            end = offset
+                        )
+                            .firstOrNull()?.let { annotation ->
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(annotation.item))
+                                context.startActivity(intent)
+                            }
+                    },
+                    modifier = Modifier
+                        .padding(1.dp)
+                )
+                Spacer(modifier = Modifier.height(50.dp))
+
+            }
         }
     }
 }
@@ -632,4 +644,16 @@ fun CourseDetailsScreen5(navController: NavController) {
 
         }
     }
+}
+
+
+
+@Preview("default")
+@Preview("dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview("large font", fontScale = 2f)
+@Preview
+@Composable
+fun ContentPrincipalPreview() {
+    val navController = rememberNavController()
+    CourseDetailsScreen(navController)
 }
