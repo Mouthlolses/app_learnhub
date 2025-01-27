@@ -61,10 +61,9 @@ fun ContentPrincipal(navController: NavController) {
         Pair("", painterResource(id = R.drawable.modelagemdedados)),
         Pair("", painterResource(id = R.drawable.python)),
         Pair("", painterResource(id = R.drawable.bancodedados)),
-        Pair(
-            "", painterResource(id = R.drawable.introdu__o___programa__o_orientada_a_objetos__poo_)
-        )
+        Pair("", painterResource(id = R.drawable.introdu__o___programa__o_orientada_a_objetos__poo_))
     )
+
     var clicked by remember { mutableStateOf(false) }
 
     Column {
@@ -167,7 +166,7 @@ fun CourseDetailsScreen(navController: NavController) {
                             "os componentes dos computadores, os sistemas lógicos e as principais funções de armazenamento" +
                             " e processamento que envolvem o poder computacional.",
                     style = MaterialTheme.typography.headlineSmall.copy(
-                        fontSize = 15.sp
+                        fontSize = 16.sp
                     ),
                     color = Color.White,
                     textAlign = TextAlign.Justify,
