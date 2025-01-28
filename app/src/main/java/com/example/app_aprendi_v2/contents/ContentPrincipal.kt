@@ -114,6 +114,7 @@ fun ContentPrincipal(navController: NavController) {
     }
 }
 
+
 @Composable
 fun CourseDetailsScreen(navController: NavController) {
     val context = LocalContext.current
@@ -136,7 +137,7 @@ fun CourseDetailsScreen(navController: NavController) {
                 .padding(0.dp),
         ) {
 
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             Text(
                 text = "Fundamentos de TI:" +
@@ -146,7 +147,7 @@ fun CourseDetailsScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(12.dp)
             )
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
             Column(
                 modifier = Modifier
@@ -248,7 +249,7 @@ fun CourseDetailsScreen2(navController: NavController) {
                 .padding(0.dp)
         )
         {
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
             Text(
                 text = "Modelagem de Dados",
@@ -269,7 +270,7 @@ fun CourseDetailsScreen2(navController: NavController) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(300.dp)
-                        .padding(10.dp),
+                        .padding(16.dp),
                     contentScale = ContentScale.Crop
                 )
                 Text(
