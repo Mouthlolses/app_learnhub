@@ -9,7 +9,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,8 +20,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -46,7 +43,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -93,7 +89,7 @@ fun ContentPrincipal(navController: NavController) {
                         painter = painter,
                         contentDescription = title,
                         modifier = Modifier
-                            .size(170.dp)
+                            .size(180.dp)
                             .clip(RoundedCornerShape(70))
                             .clickable {
                                 clicked = !clicked
@@ -162,6 +158,8 @@ fun CourseDetailsScreen(navController: NavController) {
                         .padding(10.dp),
                     contentScale = ContentScale.Crop
                 )
+                Spacer(modifier = Modifier.height(10.dp))
+
                 Text(
                     text = "• O objetivo deste curso é apresentar os conceitos básicos da informática, " +
                             "os componentes dos computadores, os sistemas lógicos e as principais funções de armazenamento" +
@@ -269,10 +267,11 @@ fun CourseDetailsScreen2(navController: NavController) {
                     contentDescription = "Modelagem de Dados",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(300.dp)
+                        .height(330.dp)
                         .padding(16.dp),
                     contentScale = ContentScale.Crop
                 )
+                Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = "• O assunto modelagem de dados é bem relevante, principalmente, nos dias de hoje," +
                             "pois o armazenamento e a administração de dados tornaram-se essenciais com a" +
@@ -378,6 +377,8 @@ fun CourseDetailsScreen3(navController: NavController) {
                     .padding(10.dp),
                 contentScale = ContentScale.Crop
             )
+            Spacer(modifier = Modifier.height(10.dp))
+
             Text(
                 text = "•  A linguagem de programação Python vem crescendo muito nos últimos anos devido à sua simplicidade e," +
                         " principalmente, à sua grande compatibilidade, pois funciona bem na maioria dos sistemas operacionais.",
@@ -480,6 +481,8 @@ fun CourseDetailsScreen4(navController: NavController) {
                     .padding(10.dp),
                 contentScale = ContentScale.Crop
             )
+            Spacer(modifier = Modifier.height(10.dp))
+
             Text(
                 text = "⚠ Atenção: Trilha de Conhecimento\n" +
                         "\n• Um Banco de Dados é uma coleção organizada de informações estruturadas," +
@@ -585,6 +588,8 @@ fun CourseDetailsScreen5(navController: NavController) {
                     .padding(10.dp),
                 contentScale = ContentScale.Crop
             )
+            Spacer(modifier = Modifier.height(10.dp))
+
             Text(
                 text = "• O objetivo deste curso é apresentar o conceito da programação orientada a objetos e as diferenças entre a programação estruturada e a POO," +
                         " que surgiu da necessidade de deixar a programação mais fácil para os desenvolvedores de software.",

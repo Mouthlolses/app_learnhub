@@ -19,8 +19,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -70,7 +68,7 @@ fun ContentSecond(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             coursesTwo.forEachIndexed { index, course ->
-                val (title,painter) = course
+                val (title, painter) = course
 
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -86,7 +84,7 @@ fun ContentSecond(navController: NavController) {
                         painter = painter,
                         contentDescription = title,
                         modifier = Modifier
-                            .size(170.dp)
+                            .size(180.dp)
                             .clip(RoundedCornerShape(70))
                             .clickable {
                                 clicked = !clicked
@@ -114,8 +112,8 @@ fun SecondCoursesDetailsScreen(navController: NavController) {
             .background(
                 brush = Brush.linearGradient(
                     colors = listOf(Color(0xFF1B001B), Color(0xFF410566)),
-                    start = Offset(0f,0f),
-                    end = Offset(1000f,1000f)
+                    start = Offset(0f, 0f),
+                    end = Offset(1000f, 1000f)
                 )
             )
             .fillMaxWidth()
@@ -145,6 +143,8 @@ fun SecondCoursesDetailsScreen(navController: NavController) {
                     .padding(10.dp),
                 contentScale = ContentScale.Crop
             )
+            Spacer(modifier = Modifier.height(10.dp))
+
             Text(
                 text = " • Este curso tem como foco mostrar na prática o uso das ferramentas computacionais básicas que são utilizadas nas tecnologias da informação e comunicação. " +
                         "Ao longo desta disciplina vamos utilizar ferramentas como planilhas eletrônicas, " +
@@ -177,7 +177,7 @@ fun SecondCoursesDetailsScreen(navController: NavController) {
                         color = Color.Green,
                         textDecoration = TextDecoration.Underline
                     )
-                ){
+                ) {
                     append("Clique Aqui")
                 }
                 pop()
@@ -202,22 +202,6 @@ fun SecondCoursesDetailsScreen(navController: NavController) {
                 modifier = Modifier
                     .padding(1.dp)
             )
-
-            Spacer(modifier = Modifier.height(50.dp))
-
-            Button(
-                onClick = { navController.popBackStack() },
-                colors = ButtonDefaults.buttonColors(containerColor = Color.Green),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(50.dp)
-            ) {
-                Text(
-                    text = "Voltar",
-                    color = Color.White
-                )
-            }
         }
     }
 }
