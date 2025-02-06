@@ -7,6 +7,23 @@
 [PT]
 - O **LearnHub**, é um aplicativo que serve como um Hub (Estilo Netlix) voltado ao direcionamento dos usuários para cursos em plataformas oficiais e que oferecem uma certificação reconhecida nacionalmente (Exemplo de Plataforma: Fundação Bradesco).A ideia foi concebida baseada em plataformas como Udemy e Coursera, porém o LearnHub teria o diferencial de promover cursos gratuitos em diversas plataformas oficiais e que oferecem um contéudo de qualidade, ofertando também um certificado reconhecido nacionalmente na finalização do respectivo curso escolhido pelo usuário.
 #
+
+[EN]
+- Instructions for Downloading and Testing the App:
+
+Access the link to the driver where the file is located through a mobile device with the Android operating system > https://drive.google.com/file/d/1PacAkUk-Ll4LgFwWluTQtnshoTImzb3Y/view?usp=drive_link
+
+After downloading, go to your downloaded files and install the file.
+
+If you try to download on your Android phone and get the message "Unknown Source," follow these instructions to successfully download and then install:
+
+Go to Settings.
+Go to Security or Apps (depending on your Android version).
+Look for an option called Install apps from unknown sources or Unknown sources.
+Enable the permission for the app (for example, your browser or file manager) to install apps from unknown sources.
+Once you've completed this process, you will be able to download and install the file.
+
+[PT]
 - Instruções Para Baixar e Testar o Aplicativo - 
 
  1° Acesse o link do driver onde o arquivo está inserido através de um dispositivo móvel com o sistema operacional Android > https://drive.google.com/file/d/1PacAkUk-Ll4LgFwWluTQtnshoTImzb3Y/view?usp=drive_link
@@ -22,7 +39,10 @@
 
   - Pronto após esse procedimento conseguirá realizar o dowload do arquivo e após isso instalar.
 #
+[EN]
+Development Stages to Date. Implemented Prototypes ->
 
+[PT]
 Estágios de desenvolvimento até o momento.  Protótipos implementados -
 ###
 
