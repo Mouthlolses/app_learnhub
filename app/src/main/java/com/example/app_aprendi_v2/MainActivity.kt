@@ -106,7 +106,7 @@ class MainActivity : ComponentActivity() {
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(15.dp))
+                Spacer(modifier = Modifier.height(24.dp))
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
